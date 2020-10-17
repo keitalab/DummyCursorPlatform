@@ -1,0 +1,2 @@
+# DummyCursorPlatform
+SpecialResearchPlanで作成するダミーカーソル実験のプラットフォーム
