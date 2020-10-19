@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PracticeController : MonoBehaviour
 {
@@ -54,8 +56,30 @@ public class PracticeController : MonoBehaviour
             else
             {
                 SceneManager.LoadScene("BreakTime");
-                Settings.isPractise = false;
+                Settings.isPractice = false;
             }
         }
+    }
+    // カーソルidをカーソル(丸)上に表示
+    void showCursorIds()
+    {
+        foreach (CursorObject cursor in cursorManager.cursors)
+        {
+        // textオブジェクト生成
+        GameObject text = Instantiate(textPrefab, new Vector3(cursor.x, cursor.y, 0), Quaternion.identity, _canvas.transform);
+        // テキスト表示
+        text.gameObject.SetActive(true);
+        // テキスト(id)を配置
+        text.GetComponent<RectTransform>().position = RectTransformUtility.WorldToScreenPoint(Camera.main, new Vector3(cursor.x, cursor.y, 0));
+        text.GetComponent<Text>().text = (cursor.id).ToString();
+        texts.Add(text);
+        Debug.Log(text.GetComponent<RectTransform>().position);
+        }
+    }
+
+    // 制限時間
+    bool isTimeOut()
+    {
+        return Time.time - firstMillis >= Settings.timeLimitSeconds;
     }
 }
