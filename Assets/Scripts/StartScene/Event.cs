@@ -13,7 +13,7 @@ public class Event : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(Keycode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape))
             Settings.Quit();
 
     }

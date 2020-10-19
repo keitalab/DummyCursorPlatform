@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 793757101}
   - component: {fileID: 793757100}
   m_Layer: 0
-  m_Name: Event
+  m_Name: Events
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -619,6 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b27ac65fff247a89033fabfb7630c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 519420031}
 --- !u!1 &1424114375
 GameObject:
   m_ObjectHideFlags: 0
