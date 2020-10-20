@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// 練習用
 public class PracticeController : MonoBehaviour
 {
     public CursorManager _cursorManager; // カーソル達の設定
@@ -23,7 +24,9 @@ public class PracticeController : MonoBehaviour
         // カーソルの生成
         cursorManager.setCursors(-Settings.ScreenHeight / 2, Settings.ScreenHeight / 2, -Settings.ScreenHeight / 2, Settings.ScreenHeight / 2);
         firstMillis = Time.time;
+
         isShowCursorId = isShowAnswer = false;
+
     }
 
     // Update is called once per frame
@@ -36,8 +39,9 @@ public class PracticeController : MonoBehaviour
             showCursorIds();
             isShowCursorId = true;
         }
+
         // 次にsを押すと答えがわかる
-        if(isShowCursorId && !isShowAnswer && Input.GetKey("s"))
+        if (isShowCursorId && !isShowAnswer && Input.GetKey("s"))
         {
             cursorManager.showRealCursor();
             isShowAnswer = true;
@@ -60,20 +64,21 @@ public class PracticeController : MonoBehaviour
             }
         }
     }
+
+
     // カーソルidをカーソル(丸)上に表示
     void showCursorIds()
     {
         foreach (CursorObject cursor in cursorManager.cursors)
         {
-        // textオブジェクト生成
-        GameObject text = Instantiate(textPrefab, new Vector3(cursor.x, cursor.y, 0), Quaternion.identity, _canvas.transform);
-        // テキスト表示
-        text.gameObject.SetActive(true);
-        // テキスト(id)を配置
-        text.GetComponent<RectTransform>().position = RectTransformUtility.WorldToScreenPoint(Camera.main, new Vector3(cursor.x, cursor.y, 0));
-        text.GetComponent<Text>().text = (cursor.id).ToString();
-        texts.Add(text);
-        Debug.Log(text.GetComponent<RectTransform>().position);
+            // textオブジェクト生成
+            GameObject text = Instantiate(textPrefab, new Vector3(cursor.x, cursor.y, 0), Quaternion.identity, _canvas.transform);
+            // テキスト表示
+            text.gameObject.SetActive(true);
+            // テキスト(id)を配置
+            text.GetComponent<RectTransform>().position = RectTransformUtility.WorldToScreenPoint(Camera.main, new Vector3(cursor.x, cursor.y, 0));
+            text.GetComponent<Text>().text = (cursor.id).ToString();
+            texts.Add(text);
         }
     }
 

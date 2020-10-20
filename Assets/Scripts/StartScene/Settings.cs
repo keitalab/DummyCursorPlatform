@@ -40,12 +40,12 @@ public class Settings : MonoBehaviour
         DontDestroyOnLoad(this);
         ScreenHeight = 2 * _camera.orthographicSize;
         ScreenWidth = ScreenHeight * Screen.width / Screen.height;
-        setPractiseCursorNum();
+        setPracticeCursorNum();
         setExperimentCursorNum();
     }
 
     // 練習の準備
-    void setPractiseCursorNum()
+    void setPracticeCursorNum()
     {
     for (int i = 0; i < practiceSessionCount; i++)
     {
@@ -61,8 +61,8 @@ public class Settings : MonoBehaviour
     for (int i = 0; i < experimentSessionCount; i++)
         foreach (int cursornum in cursornums)
         experimentCursorNum.Add(cursornum);
-    experimentCursorNum = experimentCursorNum.OrderBy(a => Guid.NewGuid()).ToList(); // シャッフル
-    experimentCountMax = experimentCursorNum.Count;
+        experimentCursorNum = experimentCursorNum.OrderBy(a => Guid.NewGuid()).ToList(); // シャッフル
+        experimentCountMax = experimentCursorNum.Count;
     }
 
     // カーソル数
@@ -77,8 +77,6 @@ public class Settings : MonoBehaviour
     {
         if (isPractice) practiceCount++;
         else experimentCount++;
-
-        Debug.Log(practiceCount);
     }
 
     // セッション数がmaxをoverしているかをチェック
