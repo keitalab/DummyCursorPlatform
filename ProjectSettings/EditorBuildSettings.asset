@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Practice.unity
     guid: 96b7d1ef728b441f991f980d3282c8f0
   - enabled: 1
+    path: Assets/Scenes/BreakTime.unity
+    guid: cd9cb4e79883f43669daff48235a234c
+  - enabled: 1
     path: Assets/Scenes/Experiment.unity
-    guid: bbede41dffb3d4dddb8cfc1b1d0eba49
+    guid: 51acbcc7a790447c5a99be4176f9d8ce
+  - enabled: 1
+    path: Assets/Scenes/Finish.unity
+    guid: 52fedb14c35cd498c95eab6eec336d86
   m_configObjects: {}
