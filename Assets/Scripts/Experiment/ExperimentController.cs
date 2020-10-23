@@ -68,6 +68,10 @@ public class ExperimentController : MonoBehaviour
         // 右キーを押すか時間切れで次に進む
         if ((isShowCursorId && Input.GetKeyDown(KeyCode.RightArrow)) || isTimeOut())
         {
+            // ファイル名を設定
+            string saveFileName = Settings.userName
+            + "_" + DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss-") + ".csv";
+            table.save("LogData/" + Settings.userName + "/" + saveFileName);
             // セッション数を+1
             Settings.increaseSessionCount();
             // 次があれば次へ、なければ終わり

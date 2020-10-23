@@ -53,13 +53,13 @@ public class Table
 
             //取得した情報を書き込む
             foreach (TableRow row in rows)
-            sw.WriteLine(format(row));
+                sw.WriteLine(format(row));
             sw.Close();
         }
         }
         catch (System.Exception e)
         {
-        Debug.Log(e.Message);
+            Debug.Log(e.Message);
         }
     }
     string format(List<string> _columns)
