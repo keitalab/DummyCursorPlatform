@@ -9,6 +9,8 @@ public class Settings : MonoBehaviour
     public Camera _camera;
     public static float ScreenWidth, ScreenHeight;
 
+    public static string userName;
+
     //c/d比
     public static float cursorSpeed = 1.0f;
 
