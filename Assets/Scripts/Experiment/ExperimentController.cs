@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class ExperimentController : MonoBehaviour
 {
     public CursorManager _cursorManager; // カーソル達の設定
+    Table table;
     [SerializeField] private GameObject textPrefab; // カーソルのid表示用のtext
     List<GameObject> texts = new List<GameObject>();
     CursorManager cursorManager; // ダミーカーソルの初期設定をするため
@@ -25,11 +26,37 @@ public class ExperimentController : MonoBehaviour
         cursorManager.setCursors(-Settings.ScreenHeight / 2, Settings.ScreenHeight / 2, -Settings.ScreenHeight / 2, Settings.ScreenHeight / 2);
         isShowCursorId = false;
         firstMillis = Time.time;
+
+        // テーブルで管理
+        table = new Table();
+        table.addColumn("username");
+        table.addColumn("cursornum");
+        table.addColumn("primary_id");
+        table.addColumn("cursor_id");
+        table.addColumn("x");
+        table.addColumn("y");
+        table.addColumn("rotated_angle");
+        table.addColumn("time");
     }
 
     // Update is called once per frame
     void Update()
     {
+        foreach (CursorObject cursor in cursorManager.cursors)
+        {
+
+        TableRow newRow = new TableRow();
+        newRow.setString("username", Settings.userName);
+        newRow.setInt("cursornum", cursorManager.cursors.Count);
+        newRow.setInt("primary_id", cursor.primaryId);
+        newRow.setInt("cursor_id", cursor.id);
+        newRow.setFloat("x", cursor.x);
+        newRow.setFloat("y", cursor.y);
+        newRow.setFloat("rotated_angle", cursor.rad);
+        newRow.setFloat("time", Time.time - firstMillis);
+        table.addRow(newRow);
+        }
+
         // spaceを押すとカーソルのidが表示
         if (!isShowCursorId && Input.GetKeyDown(KeyCode.Space))
         {
