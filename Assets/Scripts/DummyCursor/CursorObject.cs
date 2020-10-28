@@ -8,10 +8,12 @@ public class CursorObject : MonoBehaviour
     public float rad; // 相対角度
     bool isMoved = true; // 動かせるか否か
     float speed; // 速さの倍率
+    float diameter; // カーソルの直径
 
     void Start()
     {
-        speed = Settings.cursorSpeed;
+        speed = Settings.cursorSpeed * 100;
+        this.transform.localScale = new Vector2(Settings.cursorDiameter, Settings.cursorDiameter);
     }
 
     void Update()
@@ -40,8 +42,8 @@ public class CursorObject : MonoBehaviour
         // 画面外にでたら反対側から出てくるやつ
         Transform myTransform = this.transform;
         Vector3 pos = myTransform.position;
-        if (pos.x < -Settings.ScreenHeight/2) pos.x = Settings.ScreenHeight/2;
-        if (pos.x > Settings.ScreenHeight/2) pos.x = -Settings.ScreenHeight/2;
+        if (pos.x < -Settings.ScreenWidth/2) pos.x = Settings.ScreenWidth/2;
+        if (pos.x > Settings.ScreenWidth/2) pos.x = -Settings.ScreenWidth/2;
         if (pos.y < -Settings.ScreenHeight/2) pos.y = Settings.ScreenHeight/2;
         if (pos.y > Settings.ScreenHeight/2) pos.y = -Settings.ScreenHeight/2;
 

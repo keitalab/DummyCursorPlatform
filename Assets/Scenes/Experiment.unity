@@ -251,6 +251,7 @@ MonoBehaviour:
   _cursorManager: {fileID: 2015684149128194428, guid: a2fc1cdcd36fa4f80b913d80272e7dad, type: 3}
   textPrefab: {fileID: 1746421469}
   _canvas: {fileID: 1867247831}
+  background: {fileID: 170631048}
 --- !u!1 &1153902137
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ public class Settings : MonoBehaviour
 
     //c/d比
     public static float cursorSpeed = 1.0f;
+    // 直径
+    public static float cursorDiameter = 10f;
 
     //カーソル数管理
     int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
@@ -40,10 +42,13 @@ public class Settings : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        ScreenHeight = 2 * _camera.orthographicSize;
-        ScreenWidth = ScreenHeight * Screen.width / Screen.height;
-        setPracticeCursorNum();
-        setExperimentCursorNum();
+        if(!ParametersController.isSet)
+        {
+            setPracticeCursorNum();
+            setExperimentCursorNum();
+            ScreenHeight = 2 * _camera.orthographicSize;
+            ScreenWidth = ScreenHeight * Screen.width / Screen.height;
+        }
     }
 
     // 練習の準備

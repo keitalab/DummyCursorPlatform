@@ -1257,9 +1257,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 68868752}
+      - m_Target: {fileID: 68868753}
         m_TargetAssemblyTypeName: InputUserName, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: InputText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

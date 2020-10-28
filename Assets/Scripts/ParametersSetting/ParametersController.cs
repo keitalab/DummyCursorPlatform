@@ -16,6 +16,7 @@ public class ParametersController : MonoBehaviour
     public InputField delayField;
     public InputField speedField;
     public InputField sessionField;
+    public static bool isSet = false;
     void Start()
     {
         diameterField = diameterField.GetComponent<InputField>();
@@ -32,16 +33,17 @@ public class ParametersController : MonoBehaviour
 
     public void InputParameters()
     {
-        Debug.Log(diameterField.text);
-        Debug.Log(heightField.text);
-        Debug.Log(widthField.text);
-        Debug.Log(numberField1.text);
-        Debug.Log(numberField2.text);
-        Debug.Log(numberField3.text);
-        Debug.Log(numberField4.text);
-        Debug.Log(delayField.text);
-        Debug.Log(speedField.text);
-        Debug.Log(sessionField.text);
-        // SceneManager.LoadScene("StartScreen");
+        isSet = true;
+        Settings.cursorDiameter = float.Parse(diameterField.text);
+        Settings.ScreenHeight = float.Parse(heightField.text);
+        Settings.ScreenWidth = float.Parse(widthField.text);
+        // Debug.Log(numberField1.text);
+        // Debug.Log(numberField2.text);
+        // Debug.Log(numberField3.text);
+        // Debug.Log(numberField4.text);
+        // Debug.Log(delayField.text);
+        Settings.cursorSpeed = float.Parse(speedField.text);
+        // Debug.Log(sessionField.text);
+        SceneManager.LoadScene("StartScreen");
     }
 }
