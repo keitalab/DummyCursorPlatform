@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ParametersController : MonoBehaviour
 {
@@ -41,5 +42,6 @@ public class ParametersController : MonoBehaviour
         Debug.Log(delayField.text);
         Debug.Log(speedField.text);
         Debug.Log(sessionField.text);
+        // SceneManager.LoadScene("StartScreen");
     }
 }
