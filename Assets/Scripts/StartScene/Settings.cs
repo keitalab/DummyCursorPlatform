@@ -54,6 +54,8 @@ public class Settings : MonoBehaviour
 
     //タイムリミット
     public static int timeLimitSeconds = 60;
+
+    public static int setIndex = 0;
     void Start()
     {
         DontDestroyOnLoad(this);
@@ -81,20 +83,21 @@ public class Settings : MonoBehaviour
     // 本番用
     void setExperimentCursorNum()
     {
-    experimentCursorNum.Clear();
+    experimentCursorParams.Clear();
+
     for (int i = 0; i < experimentSessionCount; i++)
         foreach (int cursornum in cursornums){ // カーソル数
             foreach (float diameter in cursorDiameters){ // カーソル直径
                 foreach (float window in windowSizes){ // ウィンドウサイズ
                     foreach (float delay in cursorDelays){ // 遅延
                         foreach (float speed in cursorSpeeds){ // 速度
-                            experimentCursorParam.Add("cursornum", cursornum);
-                            experimentCursorParam.Add("diameter", diameter);
-                            experimentCursorParam.Add("window", window);
-                            experimentCursorParam.Add("delay", delay);
-                            experimentCursorParam.Add("speed", speed);
-                            experimentCursorParams.Add(experimentCursorParam);
-                            experimentCursorParam.Clear();
+                            experimentCursorParams.Add(new Dictionary<string, float>(){
+                                {"cursornum", cursornum},
+                                {"diameter", diameter},
+                                {"window", window},
+                                {"delay", delay},
+                                {"speed", speed}
+                            });
                             experimentCountMax++;
                         }
                     }
@@ -102,15 +105,13 @@ public class Settings : MonoBehaviour
             }
         }
         experimentCursorParams = experimentCursorParams.OrderBy(a => Guid.NewGuid()).ToList();
-        experimentCursorNum = experimentCursorNum.OrderBy(a => Guid.NewGuid()).ToList(); // シャッフル
-        // experimentCountMax = experimentCursorNum.Count;
     }
 
     // カーソル数
     public static int getCursorNum()
     {
         if (isPractice) return practiceCursorNum[practiceCount];
-        else return experimentCursorNum[experimentCount];
+        else return (int)experimentCursorParams[experimentCount]["cursornum"];
     }
 
     // セッション数を増やす

@@ -24,14 +24,20 @@ public class ExperimentController : MonoBehaviour
         // カーソルの事前準備
         cursorManager.init(cursornum);
         // カーソルの生成
-        cursorManager.setCursors(-Settings.ScreenHeight / 2, Settings.ScreenHeight / 2, -Settings.ScreenHeight / 2, Settings.ScreenHeight / 2);
+        cursorManager.setCursors(
+            -Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2,
+            Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2,
+            -Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2,
+            Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2
+        );
         isShowCursorId = false;
         firstMillis = Time.time;
-        background.transform.localScale = new Vector2(Settings.ScreenWidth, Settings.ScreenHeight);
-
-
-    // テーブルで管理
-    table = new Table();
+        background.transform.localScale = new Vector2(
+            Settings.experimentCursorParams[Settings.experimentCount]["window"],
+            Settings.experimentCursorParams[Settings.experimentCount]["window"]
+        );
+        // テーブルで管理
+        table = new Table();
         table.addColumn("username");
         table.addColumn("cursornum");
         table.addColumn("primary_id");

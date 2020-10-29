@@ -16,6 +16,6 @@ public class StatusTextControllerScript : MonoBehaviour
             statusText.text =
             "本番:" + (Settings.experimentCount + 1)
             + "/" + Settings.experimentCountMax
-            + "\n" + "カーソル数: " + Settings.experimentCursorNum[Settings.experimentCount];
+            + "\n" + "カーソル数: " + (int)Settings.experimentCursorParams[Settings.experimentCount]["cursornum"];
     }
 }
