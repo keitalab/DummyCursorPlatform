@@ -7,19 +7,25 @@ using UnityEngine;
 public class Settings : MonoBehaviour
 {
     public Camera _camera;
-    public static float ScreenWidth, ScreenHeight;
+
+    // windowサイズ
+    public static float ScreenWidth, ScreenHeight; // 消す?
+    public static List<int> windowSizes = new List<int>(){1080};
 
     public static string userName;
 
     //c/d比
     public static float cursorSpeed = 1.0f;
+
     // 直径
-    public static float cursorDiameter = 10f;
+    public static float cursorDiameter = 10f; // 消す
+    public static List<int> cursorDiameters = new List<int>(){10};
 
     public static float cursorDelay = 0f;
 
     //カーソル数管理
     public static int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
+    // public static 
 
 
     // 練習中

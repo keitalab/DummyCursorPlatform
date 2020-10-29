@@ -1,19 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class ParameterText : MonoBehaviour
+public class ClearDiameter : MonoBehaviour
 {
-    Text diameters;
+    // Start is called before the first frame update
     void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    public void Onclick()
     {
-        diameters.text = Settings.cursorDiameter.ToString();
+        Settings.cursorDiameters.Clear();
     }
 }
