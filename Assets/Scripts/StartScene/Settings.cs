@@ -16,6 +16,8 @@ public class Settings : MonoBehaviour
     // 直径
     public static float cursorDiameter = 10f;
 
+    public static float cursorDelay = 0f;
+
     //カーソル数管理
     public static int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
 

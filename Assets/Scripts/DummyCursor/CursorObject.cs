@@ -11,6 +11,7 @@ public class CursorObject : MonoBehaviour
     bool isMoved = true; // 動かせるか否か
     float speed; // 速さの倍率
     float diameter; // カーソルの直径
+    float delay;
 
     float timer = 0f;
     float waitingTime = 0.1f;
@@ -18,6 +19,7 @@ public class CursorObject : MonoBehaviour
     void Start()
     {
         speed = Settings.cursorSpeed * 100;
+        delay = Settings.cursorDelay / 1000;
         this.transform.localScale = new Vector2(Settings.cursorDiameter, Settings.cursorDiameter);
     }
 
@@ -27,7 +29,7 @@ public class CursorObject : MonoBehaviour
         float mouseMoveY = Input.GetAxis("Mouse Y");
         if (isMoved)
         {
-            StartCoroutine(DelayCursor(1f, () =>
+            StartCoroutine(DelayCursor(delay, () =>
             {
                 move(mouseMoveX, mouseMoveY);
             }));

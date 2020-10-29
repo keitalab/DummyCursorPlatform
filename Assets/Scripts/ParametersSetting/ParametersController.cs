@@ -44,7 +44,7 @@ public class ParametersController : MonoBehaviour
             int.Parse(numberField4.text)
         );
         // Debug.Log(delayField.text);
-        
+        Settings.cursorDelay = int.Parse(delayField.text);
         Settings.cursorSpeed = float.Parse(speedField.text);
         Settings.experimentSessionCount = int.Parse(sessionField.text);
         SceneManager.LoadScene("StartScreen");
