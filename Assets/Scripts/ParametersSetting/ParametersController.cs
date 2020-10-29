@@ -34,16 +34,19 @@ public class ParametersController : MonoBehaviour
     public void InputParameters()
     {
         isSet = true;
-        Settings.cursorDiameter = float.Parse(diameterField.text);
-        Settings.ScreenHeight = float.Parse(heightField.text);
-        Settings.ScreenWidth = float.Parse(widthField.text);
-        // Debug.Log(numberField1.text);
-        // Debug.Log(numberField2.text);
-        // Debug.Log(numberField3.text);
-        // Debug.Log(numberField4.text);
+        Settings.cursorDiameter = int.Parse(diameterField.text);
+        Settings.ScreenHeight = int.Parse(heightField.text);
+        Settings.ScreenWidth = int.Parse(widthField.text);
+        Settings.setCursorNum(
+            int.Parse(numberField1.text),
+            int.Parse(numberField2.text),
+            int.Parse(numberField3.text),
+            int.Parse(numberField4.text)
+        );
         // Debug.Log(delayField.text);
+        
         Settings.cursorSpeed = float.Parse(speedField.text);
-        // Debug.Log(sessionField.text);
+        Settings.experimentSessionCount = int.Parse(sessionField.text);
         SceneManager.LoadScene("StartScreen");
     }
 }

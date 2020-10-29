@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System;
 
 // カーソル個々の設定
 public class CursorObject : MonoBehaviour
@@ -10,6 +12,9 @@ public class CursorObject : MonoBehaviour
     float speed; // 速さの倍率
     float diameter; // カーソルの直径
 
+    float timer = 0f;
+    float waitingTime = 0.1f;
+
     void Start()
     {
         speed = Settings.cursorSpeed * 100;
@@ -18,23 +23,29 @@ public class CursorObject : MonoBehaviour
 
     void Update()
     {
-        if (isMoved) move();
+        float mouseMoveX = Input.GetAxis("Mouse X");
+        float mouseMoveY = Input.GetAxis("Mouse Y");
+        if (isMoved)
+        {
+            StartCoroutine(DelayCursor(1f, () =>
+            {
+                move(mouseMoveX, mouseMoveY);
+            }));
+        }
         torus();
     }
 
-    public void move()
+    public void move(float ax, float ay)
     {
-        // 動画見る
-        float mouseMoveX = Input.GetAxis("Mouse X");
-        float mouseMoveY = Input.GetAxis("Mouse Y");
-        float mouseMoveRad = Mathf.Atan2(mouseMoveY, mouseMoveX);
-        float moveDist = speed * dist(mouseMoveX, mouseMoveY) / 2;
+        float mouseMoveRad = Mathf.Atan2(ay, ax);
+        float moveDist = speed * dist(ax, ay) / 2;
         float cursorMoveX = moveDist * Mathf.Cos(rad + mouseMoveRad);
         float cursorMoveY = moveDist * Mathf.Sin(rad + mouseMoveRad);
         this.gameObject.transform.Translate(cursorMoveX, cursorMoveY, 0);
 
         x = this.transform.position.x;
         y = this.transform.position.y;
+
     }
 
     public void torus()
@@ -69,5 +80,11 @@ public class CursorObject : MonoBehaviour
     float dist(float moveX, float moveY)
     {
         return Mathf.Sqrt(moveX * moveX + moveY * moveY);
+    }
+
+    public static IEnumerator DelayCursor(float _waitTime, Action _action)
+    {
+        yield return new WaitForSeconds(_waitTime);
+        _action();
     }
 }
