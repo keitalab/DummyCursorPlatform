@@ -25,7 +25,7 @@ public class Settings : MonoBehaviour
 
     //カーソル数管理
     public static int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
-    // public static 
+    public static List<int> cursornum = new List<int>(){10};
 
 
     // 練習中

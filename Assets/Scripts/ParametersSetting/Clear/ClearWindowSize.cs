@@ -12,6 +12,5 @@ public class ClearWindowSize : MonoBehaviour
     public void Onclick()
     {
         Settings.windowSizes.Clear();
-        Debug.Log(Settings.windowSizes.Count);
     }
 }

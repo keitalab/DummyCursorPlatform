@@ -12,5 +12,6 @@ public class ClearCursorNumber : MonoBehaviour
     public void Onclick()
     {
         Settings.windowSizes.Clear();
+        Debug.Log(Settings.windowSizes.Count);
     }
 }
