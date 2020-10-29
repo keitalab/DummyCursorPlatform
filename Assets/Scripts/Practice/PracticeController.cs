@@ -12,6 +12,8 @@ public class PracticeController : MonoBehaviour
     List<GameObject> texts = new List<GameObject>();
     CursorManager cursorManager;
     public Canvas _canvas;
+
+    public GameObject background;
     bool isShowCursorId, isShowAnswer; // カーソルidを見せているか, 
     float firstMillis;
     void Start()
@@ -27,6 +29,7 @@ public class PracticeController : MonoBehaviour
 
         isShowCursorId = isShowAnswer = false;
 
+        background.transform.localScale = new Vector2(Settings.ScreenWidth, Settings.ScreenHeight);
     }
 
     // Update is called once per frame

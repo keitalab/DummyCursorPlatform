@@ -13,9 +13,13 @@ public class Settings : MonoBehaviour
 
     //c/d比
     public static float cursorSpeed = 1.0f;
+    // 直径
+    public static float cursorDiameter = 10f;
+
+    public static float cursorDelay = 0f;
 
     //カーソル数管理
-    int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
+    public static int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
 
 
     // 練習中
@@ -27,8 +31,9 @@ public class Settings : MonoBehaviour
 
   // 本番中
     public static List<int> experimentCursorNum = new List<int>();
-    int experimentSessionCount = 5; //パターンごとのセッション数
+    public static int experimentSessionCount = 5; //パターンごとのセッション数
     public static int experimentCount = 0;
+    
     public static int experimentCountMax;
 
 
@@ -40,8 +45,11 @@ public class Settings : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        ScreenHeight = 2 * _camera.orthographicSize;
-        ScreenWidth = ScreenHeight * Screen.width / Screen.height;
+        if(!ParametersController.isSet)
+        {
+            ScreenHeight = 2 * _camera.orthographicSize;
+            ScreenWidth = ScreenHeight * Screen.width / Screen.height;
+        }
         setPracticeCursorNum();
         setExperimentCursorNum();
     }
@@ -49,6 +57,7 @@ public class Settings : MonoBehaviour
     // 練習の準備
     void setPracticeCursorNum()
     {
+    practiceCursorNum.Clear();
     for (int i = 0; i < practiceSessionCount; i++)
     {
         foreach (int cursornum in cursornums)
@@ -60,6 +69,7 @@ public class Settings : MonoBehaviour
     // 本番用
     void setExperimentCursorNum()
     {
+    experimentCursorNum.Clear();
     for (int i = 0; i < experimentSessionCount; i++)
         foreach (int cursornum in cursornums)
         experimentCursorNum.Add(cursornum);
@@ -86,6 +96,18 @@ public class Settings : MonoBehaviour
     {
         if (isPractice) return practiceCount >= practiceCountMax;
         else return experimentCount >= experimentCountMax;
+    }
+
+    public static void setCursorNum(int num1, int num2, int num3, int num4)
+    {
+        cursornums[0] = num1;
+        cursornums[1] = num2;
+        cursornums[2] = num3;
+        cursornums[3] = num4;
+        Debug.Log(cursornums[0]);
+        Debug.Log(cursornums[1]);
+        Debug.Log(cursornums[2]);
+        Debug.Log(cursornums[3]);
     }
 
     public static void Quit()

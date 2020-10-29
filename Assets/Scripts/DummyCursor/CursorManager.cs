@@ -12,6 +12,9 @@ public class CursorManager : MonoBehaviour
     int cursornum;
     float minAngle = 45;
 
+    // カーソルの直径
+    public static float diameter;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
