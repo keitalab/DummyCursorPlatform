@@ -10,25 +10,25 @@ public class Settings : MonoBehaviour
 
     // windowサイズ
     public static float ScreenWidth, ScreenHeight; // 消す?
-    public static List<int> windowSizes = new List<int>(){1080};
+    public static List<float> windowSizes = new List<float>(){ 540, 810, 1080 };
 
     public static string userName;
 
     //c/d比
     public static float cursorSpeed = 1.0f;
-    public static List<float> cursorSpeeds = new List<float>(){1.0f};
+    public static List<float> cursorSpeeds = new List<float>(){ 0.5f, 1.0f, 2.0f};
 
     // 直径
     public static float cursorDiameter = 10f; // 消す
-    public static List<int> cursorDiameters = new List<int>(){10};
+    public static List<float> cursorDiameters = new List<float>(){ 10, 20, 30};
 
     // 遅延
     public static float cursorDelay = 0f;
-    public static List<int> cursorDelays = new List<int>{1000};
+    public static List<float> cursorDelays = new List<float>{ 0, 500, 1000};
 
     //カーソル数管理
     public static int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
-    public static List<int> cursornum = new List<int>(){10};
+    public static List<float> cursornum = new List<float>(){ 5, 10, 20, 50 };
 
 
     // 練習中
@@ -40,8 +40,10 @@ public class Settings : MonoBehaviour
 
   // 本番中
     public static List<int> experimentCursorNum = new List<int>();
+    public static List<Dictionary<string, float>> experimentCursorParams = new List<Dictionary<string, float>>();
+    public static Dictionary<string, float> experimentCursorParam = new Dictionary<string, float>();
     public static int experimentSessionCount = 5; //パターンごとのセッション数
-    public static List<int> experimentSessionCounts = new List<int>(){5};
+    public static List<float> experimentSessionCounts = new List<float>(){5};
     public static int experimentCount = 0;
     
     public static int experimentCountMax;
@@ -81,10 +83,27 @@ public class Settings : MonoBehaviour
     {
     experimentCursorNum.Clear();
     for (int i = 0; i < experimentSessionCount; i++)
-        foreach (int cursornum in cursornums)
-        experimentCursorNum.Add(cursornum);
+        foreach (int cursornum in cursornums){ // カーソル数
+            foreach (float diameter in cursorDiameters){ // カーソル直径
+                foreach (float window in windowSizes){ // ウィンドウサイズ
+                    foreach (float delay in cursorDelays){ // 遅延
+                        foreach (float speed in cursorSpeeds){ // 速度
+                            experimentCursorParam.Add("cursornum", cursornum);
+                            experimentCursorParam.Add("diameter", diameter);
+                            experimentCursorParam.Add("window", window);
+                            experimentCursorParam.Add("delay", delay);
+                            experimentCursorParam.Add("speed", speed);
+                            experimentCursorParams.Add(experimentCursorParam);
+                            experimentCursorParam.Clear();
+                            experimentCountMax++;
+                        }
+                    }
+                }
+            }
+        }
+        experimentCursorParams = experimentCursorParams.OrderBy(a => Guid.NewGuid()).ToList();
         experimentCursorNum = experimentCursorNum.OrderBy(a => Guid.NewGuid()).ToList(); // シャッフル
-        experimentCountMax = experimentCursorNum.Count;
+        // experimentCountMax = experimentCursorNum.Count;
     }
 
     // カーソル数

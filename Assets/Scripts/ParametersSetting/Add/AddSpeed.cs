@@ -14,7 +14,7 @@ public class AddSpeed : MonoBehaviour
     
     public void Onclick()
     {
-        Settings.cursorSpeeds.Add(int.Parse(speedField.text));
+        Settings.cursorSpeeds.Add(float.Parse(speedField.text));
         speedField.text = "";
     }
 }
