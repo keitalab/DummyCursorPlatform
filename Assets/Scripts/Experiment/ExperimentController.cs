@@ -13,6 +13,7 @@ public class ExperimentController : MonoBehaviour
     List<GameObject> texts = new List<GameObject>();
     CursorManager cursorManager; // ダミーカーソルの初期設定をするため
     public Canvas _canvas;
+    public GameObject background;
     bool isShowCursorId; // カーソルidを見せているか, 
     float firstMillis;
     void Start()
@@ -26,9 +27,11 @@ public class ExperimentController : MonoBehaviour
         cursorManager.setCursors(-Settings.ScreenHeight / 2, Settings.ScreenHeight / 2, -Settings.ScreenHeight / 2, Settings.ScreenHeight / 2);
         isShowCursorId = false;
         firstMillis = Time.time;
+        background.transform.localScale = new Vector2(Settings.ScreenWidth, Settings.ScreenHeight);
 
-        // テーブルで管理
-        table = new Table();
+
+    // テーブルで管理
+    table = new Table();
         table.addColumn("username");
         table.addColumn("cursornum");
         table.addColumn("primary_id");
