@@ -16,12 +16,15 @@ public class Settings : MonoBehaviour
 
     //c/d比
     public static float cursorSpeed = 1.0f;
+    public static List<float> cursorSpeeds = new List<float>(){1.0f};
 
     // 直径
     public static float cursorDiameter = 10f; // 消す
     public static List<int> cursorDiameters = new List<int>(){10};
 
+    // 遅延
     public static float cursorDelay = 0f;
+    public static List<int> cursorDelays = new List<int>{1000};
 
     //カーソル数管理
     public static int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション

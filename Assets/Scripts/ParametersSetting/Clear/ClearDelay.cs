@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearCursorNumber : MonoBehaviour
+public class ClearDelay : MonoBehaviour
 {
     void Start()
     {
@@ -11,6 +11,6 @@ public class ClearCursorNumber : MonoBehaviour
 
     public void Onclick()
     {
-        Settings.windowSizes.Clear();
+        Settings.cursorDelays.Clear();
     }
 }
