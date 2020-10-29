@@ -41,6 +41,7 @@ public class Settings : MonoBehaviour
   // 本番中
     public static List<int> experimentCursorNum = new List<int>();
     public static int experimentSessionCount = 5; //パターンごとのセッション数
+    public static List<int> experimentSessionCounts = new List<int>(){5};
     public static int experimentCount = 0;
     
     public static int experimentCountMax;

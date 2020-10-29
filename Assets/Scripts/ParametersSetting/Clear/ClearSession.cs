@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearSpeed : MonoBehaviour
+public class ClearSession : MonoBehaviour
 {
     void Start()
     {
@@ -11,6 +11,6 @@ public class ClearSpeed : MonoBehaviour
 
     public void Onclick()
     {
-        Settings.cursorSpeeds.Clear();
+        Settings.experimentSessionCounts.Clear();
     }
 }

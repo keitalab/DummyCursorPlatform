@@ -16,7 +16,5 @@ public class AddSpeed : MonoBehaviour
     {
         Settings.cursorSpeeds.Add(int.Parse(speedField.text));
         speedField.text = "";
-        for(int i=0; i < Settings.cursorSpeeds.Count; i++)
-        Debug.Log(Settings.cursorSpeeds[i]);
     }
 }
