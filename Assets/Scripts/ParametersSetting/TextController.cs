@@ -11,6 +11,7 @@ public class TextController : MonoBehaviour
     public Text delayText;
     public Text speedText;
     public Text sessionText;
+    public Text countMax;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class TextController : MonoBehaviour
         paramsText(delayText, Settings.cursorDelays);
         paramsText(speedText, Settings.cursorSpeeds);
         sessionText.text = Settings.experimentSessionCount.ToString();
+        ChangeCountMax();
     }
 
     void paramsText(Text text, List<float> num)
@@ -40,5 +42,12 @@ public class TextController : MonoBehaviour
             text.text += " " + num[i];
         }
         text.text += " }";
+    }
+
+    void ChangeCountMax()
+    {
+        countMax.text = "";
+        countMax.text = (Settings.cursorDiameters.Count * Settings.windowSizes.Count * Settings.cursornums.Count *
+                    Settings.cursorDelays.Count * Settings.cursorSpeeds.Count * Settings.experimentSessionCount).ToString();
     }
 }

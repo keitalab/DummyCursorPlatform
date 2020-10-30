@@ -104,7 +104,6 @@ public class Settings : MonoBehaviour
             }
         }
     }
-    Debug.Log(experimentCountMax);
     experimentCursorParams = experimentCursorParams.OrderBy(a => Guid.NewGuid()).ToList();
     }
 
