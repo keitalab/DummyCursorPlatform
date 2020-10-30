@@ -14,7 +14,6 @@ public class AddSession : MonoBehaviour
     
     public void Onclick()
     {
-        Settings.experimentSessionCounts.Add(float.Parse(sessionField.text));
-        sessionField.text = "";
+        Settings.experimentSessionCount = int.Parse(sessionField.text);
     }
 }

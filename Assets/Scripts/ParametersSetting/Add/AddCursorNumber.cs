@@ -16,7 +16,5 @@ public class AddCursorNumber : MonoBehaviour
     {
         Settings.cursornum.Add(float.Parse(numberField.text));
         numberField.text = "";
-        for(int i=0; i < Settings.cursornum.Count; i++)
-        Debug.Log(Settings.cursornum[i]);
     }
 }
