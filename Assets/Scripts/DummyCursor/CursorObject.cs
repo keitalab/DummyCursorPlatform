@@ -24,7 +24,7 @@ public class CursorObject : MonoBehaviour
             delay = Settings.cursorDelay / 1000;
             this.transform.localScale = new Vector2(Settings.cursorDiameter, Settings.cursorDiameter);
         }
-        else
+        else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
         {
             speed = Settings.experimentCursorParams[Settings.experimentCount]["speed"] * 100;
             delay = Settings.experimentCursorParams[Settings.experimentCount]["delay"] / 1000;
@@ -50,7 +50,7 @@ public class CursorObject : MonoBehaviour
         {
             torus(Settings.ScreenHeight);
         }
-        else
+        else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
         {
             torus(Settings.experimentCursorParams[Settings.experimentCount]["window"]);
         }

@@ -9,7 +9,7 @@ public class Settings : MonoBehaviour
     public Camera _camera;
 
     // windowサイズ
-    public static float ScreenWidth, ScreenHeight; // 消す?
+    public static float ScreenWidth, ScreenHeight;// 必要か要吟味
     public static List<float> windowSizes = new List<float>(){ 540, 810, 1080 };
 
     public static string userName;
@@ -27,8 +27,8 @@ public class Settings : MonoBehaviour
     public static List<float> cursorDelays = new List<float>{ 0, 500, 1000};
 
     //カーソル数管理
-    public static int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
-    public static List<float> cursornum = new List<float>(){ 5, 10, 20, 50 };
+    // public static int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
+    public static List<float> cursornums = new List<float>(){ 5, 10, 20, 50 };
 
 
     // 練習中
@@ -39,11 +39,10 @@ public class Settings : MonoBehaviour
     public static int practiceCountMax;
 
   // 本番中
-    public static List<int> experimentCursorNum = new List<int>();
+    // public static List<int> experimentCursorNum = new List<int>();
     public static List<Dictionary<string, float>> experimentCursorParams = new List<Dictionary<string, float>>();
     public static Dictionary<string, float> experimentCursorParam = new Dictionary<string, float>();
     public static int experimentSessionCount = 5; //パターンごとのセッション数
-    public static List<float> experimentSessionCounts = new List<float>(){5};
     public static int experimentCount = 0;
     
     public static int experimentCountMax;
@@ -55,7 +54,6 @@ public class Settings : MonoBehaviour
     //タイムリミット
     public static int timeLimitSeconds = 60;
 
-    public static int setIndex = 0;
     void Start()
     {
         DontDestroyOnLoad(this);
@@ -84,8 +82,9 @@ public class Settings : MonoBehaviour
     void setExperimentCursorNum()
     {
     experimentCursorParams.Clear();
-
+    experimentCountMax = 0;
     for (int i = 0; i < experimentSessionCount; i++)
+    {
         foreach (int cursornum in cursornums){ // カーソル数
             foreach (float diameter in cursorDiameters){ // カーソル直径
                 foreach (float window in windowSizes){ // ウィンドウサイズ
@@ -104,7 +103,9 @@ public class Settings : MonoBehaviour
                 }
             }
         }
-        experimentCursorParams = experimentCursorParams.OrderBy(a => Guid.NewGuid()).ToList();
+    }
+    Debug.Log(experimentCountMax);
+    experimentCursorParams = experimentCursorParams.OrderBy(a => Guid.NewGuid()).ToList();
     }
 
     // カーソル数
@@ -126,18 +127,6 @@ public class Settings : MonoBehaviour
     {
         if (isPractice) return practiceCount >= practiceCountMax;
         else return experimentCount >= experimentCountMax;
-    }
-
-    public static void setCursorNum(int num1, int num2, int num3, int num4)
-    {
-        cursornums[0] = num1;
-        cursornums[1] = num2;
-        cursornums[2] = num3;
-        cursornums[3] = num4;
-        Debug.Log(cursornums[0]);
-        Debug.Log(cursornums[1]);
-        Debug.Log(cursornums[2]);
-        Debug.Log(cursornums[3]);
     }
 
     public static void Quit()

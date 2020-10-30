@@ -22,7 +22,7 @@ public class TextController : MonoBehaviour
     {
         paramsText(diameterText, Settings.cursorDiameters);
         paramsText(windowText, Settings.windowSizes);
-        paramsText(numberText, Settings.cursornum);
+        paramsText(numberText, Settings.cursornums);
         paramsText(delayText, Settings.cursorDelays);
         paramsText(speedText, Settings.cursorSpeeds);
         sessionText.text = Settings.experimentSessionCount.ToString();

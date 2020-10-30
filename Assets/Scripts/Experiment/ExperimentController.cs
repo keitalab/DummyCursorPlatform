@@ -45,6 +45,10 @@ public class ExperimentController : MonoBehaviour
         table.addColumn("x");
         table.addColumn("y");
         table.addColumn("rotated_angle");
+        table.addColumn("diameter");
+        table.addColumn("window_size");
+        table.addColumn("delay");
+        table.addColumn("speed_rate");
         table.addColumn("time");
     }
 
@@ -62,6 +66,10 @@ public class ExperimentController : MonoBehaviour
         newRow.setFloat("x", cursor.x);
         newRow.setFloat("y", cursor.y);
         newRow.setFloat("rotated_angle", cursor.rad);
+        newRow.setFloat("diameter", Settings.experimentCursorParams[Settings.experimentCount]["diameter"]);
+        newRow.setFloat("window_size", Settings.experimentCursorParams[Settings.experimentCount]["window"]);
+        newRow.setFloat("delay", Settings.experimentCursorParams[Settings.experimentCount]["delay"]);
+        newRow.setFloat("speed_rate", Settings.experimentCursorParams[Settings.experimentCount]["speed"]);
         newRow.setFloat("time", Time.time - firstMillis);
         table.addRow(newRow);
         }

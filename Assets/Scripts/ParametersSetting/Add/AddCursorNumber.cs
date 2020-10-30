@@ -14,7 +14,7 @@ public class AddCursorNumber : MonoBehaviour
     
     public void Onclick()
     {
-        Settings.cursornum.Add(float.Parse(numberField.text));
+        Settings.cursornums.Add(float.Parse(numberField.text));
         numberField.text = "";
     }
 }
