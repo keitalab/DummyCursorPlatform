@@ -27,6 +27,7 @@ public class Settings : MonoBehaviour
     public static List<int> cursorDelays = new List<int>{1000};
 
     //カーソル数管理
+    public static int[] practiceCursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
     public static int[] cursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
     public static List<int> cursornum = new List<int>(){10};
 
@@ -70,7 +71,7 @@ public class Settings : MonoBehaviour
     practiceCursorNum.Clear();
     for (int i = 0; i < practiceSessionCount; i++)
     {
-        foreach (int cursornum in cursornums)
+        foreach (int cursornum in practiceCursornums)
         practiceCursorNum.Add(cursornum);
     }
     practiceCountMax = practiceCursorNum.Count;
