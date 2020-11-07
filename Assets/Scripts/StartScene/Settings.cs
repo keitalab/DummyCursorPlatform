@@ -24,12 +24,11 @@ public class Settings : MonoBehaviour
 
     // 遅延
     public static float cursorDelay = 0f;
-    public static List<float> cursorDelays = new List<float>{ 0, 500, 1000};
+    public static List<float> cursorDelays = new List<float>(){ 0, 500, 1000};
 
     //カーソル数管理
     public static int[] practiceCursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
-    public static List<float> cursornums = new List<float>{ 5, 10, 20, 50 }; // これ全部で1セッション
-    public static List<int> cursornum = new List<int>(){10};
+    public static List<float> cursornums = new List<float>(){ 5, 10, 20, 50 }; // これ全部で1セッション
 
     // 練習中
     public static List<int> practiceCursorNum = new List<int>();
@@ -126,6 +125,23 @@ public class Settings : MonoBehaviour
     {
         if (isPractice) return practiceCount >= practiceCountMax;
         else return experimentCount >= experimentCountMax;
+    }
+
+    public static void resetParams()
+    {
+        // 一度Clear
+        Settings.cursornums.Clear();
+        Settings.cursorDelays.Clear();
+        Settings.cursorDiameters.Clear();
+        Settings.cursorSpeeds.Clear();
+        Settings.windowSizes.Clear();
+        // 初期値に戻す
+        Settings.cursornums.AddRange(new List<float>() { 5, 10, 20, 50 });
+        Settings.cursorDelays.AddRange(new List<float>() { 0, 500, 1000 });
+        Settings.cursorDiameters.AddRange(new List<float>() { 10, 20, 30 });
+        Settings.cursorSpeeds.AddRange(new List<float>() { 0.5f, 1.0f, 2.0f });
+        Settings.windowSizes.AddRange(new List<float>() { 540, 810, 1080 });
+        Settings.experimentSessionCount = 5;
     }
 
     public static void Quit()
