@@ -14,9 +14,7 @@ public class AddWindowSize : MonoBehaviour
     
     public void Onclick()
     {
-        Settings.windowSizes.Add(int.Parse(windowField.text));
+        Settings.windowSizes.Add(float.Parse(windowField.text));
         windowField.text = "";
-        for(int i=0; i < Settings.windowSizes.Count; i++)
-        Debug.Log(Settings.windowSizes[i]);
     }
 }

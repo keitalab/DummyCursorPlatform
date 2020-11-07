@@ -24,14 +24,20 @@ public class ExperimentController : MonoBehaviour
         // カーソルの事前準備
         cursorManager.init(cursornum);
         // カーソルの生成
-        cursorManager.setCursors(-Settings.ScreenHeight / 2, Settings.ScreenHeight / 2, -Settings.ScreenHeight / 2, Settings.ScreenHeight / 2);
+        cursorManager.setCursors(
+            -Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2,
+            Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2,
+            -Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2,
+            Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2
+        );
         isShowCursorId = false;
         firstMillis = Time.time;
-        background.transform.localScale = new Vector2(Settings.ScreenWidth, Settings.ScreenHeight);
-
-
-    // テーブルで管理
-    table = new Table();
+        background.transform.localScale = new Vector2(
+            Settings.experimentCursorParams[Settings.experimentCount]["window"],
+            Settings.experimentCursorParams[Settings.experimentCount]["window"]
+        );
+        // テーブルで管理
+        table = new Table();
         table.addColumn("username");
         table.addColumn("cursornum");
         table.addColumn("primary_id");
@@ -39,6 +45,10 @@ public class ExperimentController : MonoBehaviour
         table.addColumn("x");
         table.addColumn("y");
         table.addColumn("rotated_angle");
+        table.addColumn("diameter");
+        table.addColumn("window_size");
+        table.addColumn("delay");
+        table.addColumn("speed_rate");
         table.addColumn("time");
     }
 
@@ -56,6 +66,10 @@ public class ExperimentController : MonoBehaviour
         newRow.setFloat("x", cursor.x);
         newRow.setFloat("y", cursor.y);
         newRow.setFloat("rotated_angle", cursor.rad);
+        newRow.setFloat("diameter", Settings.experimentCursorParams[Settings.experimentCount]["diameter"]);
+        newRow.setFloat("window_size", Settings.experimentCursorParams[Settings.experimentCount]["window"]);
+        newRow.setFloat("delay", Settings.experimentCursorParams[Settings.experimentCount]["delay"]);
+        newRow.setFloat("speed_rate", Settings.experimentCursorParams[Settings.experimentCount]["speed"]);
         newRow.setFloat("time", Time.time - firstMillis);
         table.addRow(newRow);
         }
