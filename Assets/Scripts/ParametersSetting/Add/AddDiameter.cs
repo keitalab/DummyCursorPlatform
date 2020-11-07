@@ -14,7 +14,7 @@ public class AddDiameter : MonoBehaviour
     
     public void Onclick()
     {
-        Settings.cursorDiameters.Add(int.Parse(diameterField.text));
+        Settings.cursorDiameters.Add(float.Parse(diameterField.text));
         diameterField.text = "";
     }
 }

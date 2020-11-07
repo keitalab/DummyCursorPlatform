@@ -18,9 +18,21 @@ public class CursorObject : MonoBehaviour
 
     void Start()
     {
-        speed = Settings.cursorSpeed * 100;
-        delay = Settings.cursorDelay / 1000;
-        this.transform.localScale = new Vector2(Settings.cursorDiameter, Settings.cursorDiameter);
+        if(Settings.isPractice)
+        {
+            speed = Settings.cursorSpeed * 100;
+            delay = Settings.cursorDelay / 1000;
+            this.transform.localScale = new Vector2(Settings.cursorDiameter, Settings.cursorDiameter);
+        }
+        else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
+        {
+            speed = Settings.experimentCursorParams[Settings.experimentCount]["speed"] * 100;
+            delay = Settings.experimentCursorParams[Settings.experimentCount]["delay"] / 1000;
+            this.transform.localScale = new Vector2(
+                Settings.experimentCursorParams[Settings.experimentCount]["diameter"],
+                Settings.experimentCursorParams[Settings.experimentCount]["diameter"]
+            );
+        }
     }
 
     void Update()
@@ -34,7 +46,15 @@ public class CursorObject : MonoBehaviour
                 move(mouseMoveX, mouseMoveY);
             }));
         }
-        torus();
+        if(Settings.isPractice)
+        {
+            torus(Settings.ScreenHeight);
+        }
+        else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
+        {
+            torus(Settings.experimentCursorParams[Settings.experimentCount]["window"]);
+        }
+        
     }
 
     public void move(float ax, float ay)
@@ -50,15 +70,15 @@ public class CursorObject : MonoBehaviour
 
     }
 
-    public void torus()
+    public void torus(float windowSize)
     {
         // 画面外にでたら反対側から出てくるやつ
         Transform myTransform = this.transform;
         Vector3 pos = myTransform.position;
-        if (pos.x < -Settings.ScreenWidth/2) pos.x = Settings.ScreenWidth/2;
-        if (pos.x > Settings.ScreenWidth/2) pos.x = -Settings.ScreenWidth/2;
-        if (pos.y < -Settings.ScreenHeight/2) pos.y = Settings.ScreenHeight/2;
-        if (pos.y > Settings.ScreenHeight/2) pos.y = -Settings.ScreenHeight/2;
+        if (pos.x < -windowSize/2) pos.x = windowSize/2;
+        if (pos.x > windowSize/2) pos.x = -windowSize/2;
+        if (pos.y < -windowSize/2) pos.y = windowSize/2;
+        if (pos.y > windowSize/2) pos.y = -windowSize/2;
 
         myTransform.position = pos;
 

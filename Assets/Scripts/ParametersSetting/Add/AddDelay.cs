@@ -14,7 +14,7 @@ public class AddDelay : MonoBehaviour
     
     public void Onclick()
     {
-        Settings.cursorDelays.Add(int.Parse(delayField.text));
+        Settings.cursorDelays.Add(float.Parse(delayField.text));
         delayField.text = "";
     }
 }
