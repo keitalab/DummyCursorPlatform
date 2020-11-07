@@ -11,6 +11,7 @@ public class BackButton : MonoBehaviour
 
     public void OnClick()
     {
+        Settings.resetParams();
         SceneManager.LoadScene("StartScreen");
     }
 }
