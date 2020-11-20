@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -38,9 +39,10 @@ public class PracticeController : MonoBehaviour
         // spaceを押すとカーソルのidが表示
         if (!isShowCursorId && Input.GetKeyDown(KeyCode.Space))
         {
+            
             cursorManager.stopCursors();
-            showCursorIds();
             isShowCursorId = true;
+            Invoke("showCursurIds", 0.1f);
         }
 
         // 次にsを押すと答えがわかる
@@ -80,6 +82,7 @@ public class PracticeController : MonoBehaviour
             text.gameObject.SetActive(true);
             // テキスト(id)を配置
             text.GetComponent<RectTransform>().position = RectTransformUtility.WorldToScreenPoint(Camera.main, new Vector3(cursor.x, cursor.y, 0));
+            // text.GetComponent<RectTransform>().position = new Vector3(cursor.x, cursor.y, 0);
             text.GetComponent<Text>().text = (cursor.id).ToString();
             texts.Add(text);
         }
