@@ -83,7 +83,7 @@ public class ExperimentController : MonoBehaviour
         if (!isShowCursorId && Input.GetKeyDown(KeyCode.Space))
         {
             cursorManager.stopCursors();
-            Invoke("showCursurIds", 0.1f);
+            Invoke("showCursorIds", Settings.experimentCursorParams[Settings.experimentCount]["delay"] / 1000 + 0.1f);
             isShowCursorId = true;
             isPressSpace = true;
         }
