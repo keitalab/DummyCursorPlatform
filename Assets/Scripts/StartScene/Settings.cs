@@ -10,25 +10,25 @@ public class Settings : MonoBehaviour
 
     // windowサイズ
     public static float ScreenWidth, ScreenHeight;// 必要か要吟味
-    public static List<float> windowSizes = new List<float>(){ 540, 810, 1080 };
+    public static List<float> windowSizes = new List<float>(){ 1080 };
 
     public static string userName;
 
     //c/d比
     public static float cursorSpeed = 1.0f;
-    public static List<float> cursorSpeeds = new List<float>(){ 0.5f, 1.0f, 2.0f};
+    public static List<float> cursorSpeeds = new List<float>(){ 1.0f };
 
     // 直径
     public static float cursorDiameter = 10f; // 消す
-    public static List<float> cursorDiameters = new List<float>(){ 10, 20, 30};
+    public static List<float> cursorDiameters = new List<float>(){ 10 };
 
     // 遅延
     public static float cursorDelay = 0f;
-    public static List<float> cursorDelays = new List<float>(){ 0, 500, 1000};
+    public static List<float> cursorDelays = new List<float>(){ 0 };
 
     //カーソル数管理
     public static int[] practiceCursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
-    public static List<float> cursornums = new List<float>(){ 5, 10, 20, 50 }; // これ全部で1セッション
+    public static List<float> cursornums = new List<float>(){ 10 }; // これ全部で1セッション
 
     // 練習中
     public static List<int> practiceCursorNum = new List<int>();
