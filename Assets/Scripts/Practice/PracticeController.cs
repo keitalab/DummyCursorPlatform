@@ -42,7 +42,7 @@ public class PracticeController : MonoBehaviour
             
             cursorManager.stopCursors();
             isShowCursorId = true;
-            Invoke("showCursurIds", 0.1f);
+            Invoke("showCursorIds", 0.1f);
         }
 
         // 次にsを押すと答えがわかる
