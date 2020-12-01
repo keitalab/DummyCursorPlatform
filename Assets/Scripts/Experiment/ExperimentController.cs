@@ -36,8 +36,8 @@ public class ExperimentController : MonoBehaviour
         isPressSpace = false;
         firstMillis = Time.time;
         background.transform.localScale = new Vector2(
-            Settings.experimentCursorParams[Settings.experimentCount]["window"],
-            Settings.experimentCursorParams[Settings.experimentCount]["window"]
+            Settings.experimentCursorParams[Settings.experimentCount]["window"] / 4,
+            Settings.experimentCursorParams[Settings.experimentCount]["window"] / 4
         );
         // テーブルで管理
         table = new Table();

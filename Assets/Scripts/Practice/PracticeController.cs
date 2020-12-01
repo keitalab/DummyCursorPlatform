@@ -30,7 +30,7 @@ public class PracticeController : MonoBehaviour
 
         isShowCursorId = isShowAnswer = false;
 
-        background.transform.localScale = new Vector2(Settings.ScreenHeight, Settings.ScreenHeight);
+        background.transform.localScale = new Vector2(Settings.ScreenHeight / 4, Settings.ScreenHeight / 4);
     }
 
     // Update is called once per frame
