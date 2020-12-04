@@ -20,9 +20,9 @@ public class CursorObject : MonoBehaviour
     {
         if(Settings.isPractice)
         {
-            speed = Settings.cursorSpeed * 100;
+            speed = Settings.cursorSpeed * 160;
             delay = Settings.cursorDelay / 1000;
-            this.transform.localScale = new Vector2(Settings.cursorDiameter / 10, Settings.cursorDiameter / 10);
+            this.transform.localScale = new Vector2(Settings.cursorDiameter / 2, Settings.cursorDiameter / 2);
         }
         else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
         {
@@ -63,6 +63,7 @@ public class CursorObject : MonoBehaviour
         float moveDist = speed * dist(ax, ay) / 2;
         float cursorMoveX = moveDist * Mathf.Cos(rad + mouseMoveRad);
         float cursorMoveY = moveDist * Mathf.Sin(rad + mouseMoveRad);
+        Debug.Log(speed);
         this.gameObject.transform.Translate(cursorMoveX, cursorMoveY, 0);
 
         x = this.transform.position.x;

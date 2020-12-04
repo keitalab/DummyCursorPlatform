@@ -53,7 +53,7 @@ public class PracticeController : MonoBehaviour
         }
 
         // 右キーを押すか時間切れで次に進む
-        if (isShowAnswer && Input.GetKeyDown(KeyCode.RightArrow) || isTimeOut())
+        if (isShowAnswer && Input.GetKeyDown(KeyCode.RightArrow) || (isTimeOut() && Settings.isLimitedTime))
         {
             // セッション数を+1
             Settings.increaseSessionCount();
