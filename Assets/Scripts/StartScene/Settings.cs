@@ -53,6 +53,8 @@ public class Settings : MonoBehaviour
     //タイムリミット
     public static int timeLimitSeconds = 60;
 
+    public static bool isLimitedTime = true;
+
     void Start()
     {
         DontDestroyOnLoad(this);

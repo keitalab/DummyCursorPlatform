@@ -89,7 +89,7 @@ public class ExperimentController : MonoBehaviour
         }
 
         // 右キーを押すか時間切れで次に進む
-        if ((isShowCursorId && Input.GetKeyDown(KeyCode.RightArrow)) || isTimeOut())
+        if ((isShowCursorId && Input.GetKeyDown(KeyCode.RightArrow)) || (isTimeOut() && Settings.isLimitedTime))
         {
             // ファイル名を設定
             string saveFileName = Settings.userName
