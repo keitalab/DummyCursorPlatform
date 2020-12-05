@@ -26,7 +26,7 @@ public class PracticeController : MonoBehaviour
         // カーソルの事前準備
         cursorManager.init(cursornum);
         // カーソルの生成
-        cursorManager.setCursors(-Settings.ScreenHeight / 2, Settings.ScreenHeight / 2, -Settings.ScreenHeight / 2, Settings.ScreenHeight / 2);
+        cursorManager.setCursors(-1080 / 2, 1080 / 2, -1080 / 2, 1080 / 2);
         firstMillis = Time.time;
 
         isShowCursorId = isShowAnswer = false;

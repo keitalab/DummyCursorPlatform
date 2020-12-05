@@ -52,7 +52,7 @@ public class CursorObject : MonoBehaviour
         }
         if(Settings.isPractice)
         {
-            torus(Settings.ScreenHeight);
+            torus(1080);
         }
         else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
         {
