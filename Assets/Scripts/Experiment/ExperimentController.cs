@@ -16,6 +16,10 @@ public class ExperimentController : MonoBehaviour
     public GameObject background;
     bool isShowCursorId; // カーソルidを見せているか, 
     float firstMillis;
+
+    public Camera _camera;
+
+    bool isPressSpace;
     void Start()
     {
         int cursornum = Settings.getCursorNum(); // カーソル数取得
@@ -31,11 +35,13 @@ public class ExperimentController : MonoBehaviour
             Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2
         );
         isShowCursorId = false;
+        isPressSpace = false;
         firstMillis = Time.time;
         background.transform.localScale = new Vector2(
-            Settings.experimentCursorParams[Settings.experimentCount]["window"],
-            Settings.experimentCursorParams[Settings.experimentCount]["window"]
+            Settings.experimentCursorParams[Settings.experimentCount]["window"] / 4,
+            Settings.experimentCursorParams[Settings.experimentCount]["window"] / 4
         );
+        _camera.orthographicSize = Screen.height / 2;
         // テーブルで管理
         table = new Table();
         table.addColumn("username");
@@ -55,35 +61,38 @@ public class ExperimentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (CursorObject cursor in cursorManager.cursors)
+        if(!isPressSpace)
         {
+            foreach (CursorObject cursor in cursorManager.cursors)
+            {
 
-        TableRow newRow = new TableRow();
-        newRow.setString("username", Settings.userName);
-        newRow.setInt("cursornum", cursorManager.cursors.Count);
-        newRow.setInt("primary_id", cursor.primaryId);
-        newRow.setInt("cursor_id", cursor.id);
-        newRow.setFloat("x", cursor.x);
-        newRow.setFloat("y", cursor.y);
-        newRow.setFloat("rotated_angle", cursor.rad);
-        newRow.setFloat("diameter", Settings.experimentCursorParams[Settings.experimentCount]["diameter"]);
-        newRow.setFloat("window_size", Settings.experimentCursorParams[Settings.experimentCount]["window"]);
-        newRow.setFloat("delay", Settings.experimentCursorParams[Settings.experimentCount]["delay"]);
-        newRow.setFloat("speed_rate", Settings.experimentCursorParams[Settings.experimentCount]["speed"]);
-        newRow.setFloat("time", Time.time - firstMillis);
-        table.addRow(newRow);
+            TableRow newRow = new TableRow();
+            newRow.setString("username", Settings.userName);
+            newRow.setInt("cursornum", cursorManager.cursors.Count);
+            newRow.setInt("primary_id", cursor.primaryId);
+            newRow.setInt("cursor_id", cursor.id);
+            newRow.setFloat("x", cursor.x);
+            newRow.setFloat("y", cursor.y);
+            newRow.setFloat("rotated_angle", cursor.rad);
+            newRow.setFloat("diameter", Settings.experimentCursorParams[Settings.experimentCount]["diameter"]);
+            newRow.setFloat("window_size", Settings.experimentCursorParams[Settings.experimentCount]["window"]);
+            newRow.setFloat("delay", Settings.experimentCursorParams[Settings.experimentCount]["delay"]);
+            newRow.setFloat("speed_rate", Settings.experimentCursorParams[Settings.experimentCount]["speed"]);
+            newRow.setFloat("time", Time.time - firstMillis);
+            table.addRow(newRow);
+            }
         }
-
         // spaceを押すとカーソルのidが表示
         if (!isShowCursorId && Input.GetKeyDown(KeyCode.Space))
         {
             cursorManager.stopCursors();
-            showCursorIds();
+            Invoke("showCursorIds", Settings.experimentCursorParams[Settings.experimentCount]["delay"] / 1000 + 0.1f);
             isShowCursorId = true;
+            isPressSpace = true;
         }
 
         // 右キーを押すか時間切れで次に進む
-        if ((isShowCursorId && Input.GetKeyDown(KeyCode.RightArrow)) || isTimeOut())
+        if ((isShowCursorId && Input.GetKeyDown(KeyCode.RightArrow)) || (isTimeOut() && Settings.isLimitedTime))
         {
             // ファイル名を設定
             string saveFileName = Settings.userName

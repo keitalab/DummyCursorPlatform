@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Event : MonoBehaviour
 {
@@ -8,6 +9,14 @@ public class Event : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
+        if(Directory.Exists("ogapy"))
+        {
+            Directory.CreateDirectory("kyon");
+        }
+        else
+        {
+            Directory.CreateDirectory("ogapy");
+        }
     }
 
     // Update is called once per frame
