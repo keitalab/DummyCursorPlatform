@@ -17,6 +17,8 @@ public class ExperimentController : MonoBehaviour
     bool isShowCursorId; // カーソルidを見せているか, 
     float firstMillis;
 
+    public Camera _camera;
+
     bool isPressSpace;
     void Start()
     {
@@ -39,6 +41,7 @@ public class ExperimentController : MonoBehaviour
             Settings.experimentCursorParams[Settings.experimentCount]["window"] / 4,
             Settings.experimentCursorParams[Settings.experimentCount]["window"] / 4
         );
+        _camera.orthographicSize = Screen.height / 2;
         // テーブルで管理
         table = new Table();
         table.addColumn("username");

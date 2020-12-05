@@ -17,6 +17,7 @@ public class PracticeController : MonoBehaviour
     public GameObject background;
     bool isShowCursorId, isShowAnswer; // カーソルidを見せているか, 
     float firstMillis;
+    public Camera _camera;
     void Start()
     {
         int cursornum = Settings.getCursorNum(); // カーソル数取得
@@ -30,7 +31,9 @@ public class PracticeController : MonoBehaviour
 
         isShowCursorId = isShowAnswer = false;
 
-        background.transform.localScale = new Vector2(Settings.ScreenHeight / 4, Settings.ScreenHeight / 4);
+        background.transform.localScale = new Vector2(1080 / 4, 1080 / 4);
+
+        _camera.orthographicSize = Screen.height / 2;
     }
 
     // Update is called once per frame
