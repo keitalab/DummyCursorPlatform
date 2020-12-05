@@ -252,6 +252,7 @@ MonoBehaviour:
   textPrefab: {fileID: 1746421469}
   _canvas: {fileID: 1867247831}
   background: {fileID: 170631048}
+  _camera: {fileID: 1153902139}
 --- !u!1 &1153902137
 GameObject:
   m_ObjectHideFlags: 0
