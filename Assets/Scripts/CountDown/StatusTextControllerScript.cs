@@ -18,7 +18,7 @@ public class StatusTextControllerScript : MonoBehaviour
             + "/" + Settings.practiceCountMax
             + "\n" + "カーソル数: " + Settings.practiceCursorNum[Settings.practiceCount];
             diameter.text = Settings.cursorDiameter.ToString() + "px";
-            window_size.text = Settings.ScreenHeight.ToString() + "px";
+            window_size.text = 1080.ToString() + "px";
             delay.text = Settings.cursorDelay.ToString() + "ms";
             speed_rate.text = Settings.cursorSpeed.ToString() + "倍";
         }
