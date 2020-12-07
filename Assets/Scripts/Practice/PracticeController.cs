@@ -26,13 +26,19 @@ public class PracticeController : MonoBehaviour
         // カーソルの事前準備
         cursorManager.init(cursornum);
         // カーソルの生成
-        cursorManager.setCursors(-1080 / 2, 1080 / 2, -1080 / 2, 1080 / 2);
-        firstMillis = Time.time;
-
+        cursorManager.setCursors(
+            -Settings.practiceCursorParams[Settings.practiceCount]["window"] / 2,
+            Settings.practiceCursorParams[Settings.practiceCount]["window"] / 2,
+            -Settings.practiceCursorParams[Settings.practiceCount]["window"] / 2,
+            Settings.practiceCursorParams[Settings.practiceCount]["window"] / 2
+        );
         isShowCursorId = isShowAnswer = false;
-
-        background.transform.localScale = new Vector2(1080 / 4, 1080 / 4);
-
+        firstMillis = Time.time;
+        background.transform.localScale = new Vector2(
+            Settings.practiceCursorParams[Settings.practiceCount]["window"] / 4,
+            Settings.practiceCursorParams[Settings.practiceCount]["window"] / 4
+        );
+        // 画面サイズごとにカメラのサイズを調整
         _camera.orthographicSize = Screen.height / 2;
     }
 
@@ -45,7 +51,7 @@ public class PracticeController : MonoBehaviour
             
             cursorManager.stopCursors();
             isShowCursorId = true;
-            Invoke("showCursorIds", 0.1f);
+            Invoke("showCursorIds", Settings.practiceCursorParams[Settings.practiceCount]["delay"] / 1000 + 0.1f);
         }
 
         // 次にsを押すと答えがわかる
