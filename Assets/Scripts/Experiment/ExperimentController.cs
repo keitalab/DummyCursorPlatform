@@ -34,13 +34,18 @@ public class ExperimentController : MonoBehaviour
             -Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2,
             Settings.experimentCursorParams[Settings.experimentCount]["window"] / 2
         );
+        
         isShowCursorId = false;
         isPressSpace = false;
         firstMillis = Time.time;
+
+        // backgroundが4x4だから4で割る
         background.transform.localScale = new Vector2(
             Settings.experimentCursorParams[Settings.experimentCount]["window"] / 4,
             Settings.experimentCursorParams[Settings.experimentCount]["window"] / 4
         );
+
+        // 画面サイズごとにカメラのサイズを調整
         _camera.orthographicSize = Screen.height / 2;
         // テーブルで管理
         table = new Table();
