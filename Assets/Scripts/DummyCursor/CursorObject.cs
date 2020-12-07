@@ -20,9 +20,14 @@ public class CursorObject : MonoBehaviour
     {
         if(Settings.isPractice)
         {
-            speed = Settings.cursorSpeed * 100;
-            delay = Settings.cursorDelay / 1000;
-            this.transform.localScale = new Vector2(Settings.cursorDiameter, Settings.cursorDiameter);
+            // カーソルの速度調整
+            // speed = Settings.cursorSpeed * _camera.orthographicSize / 5;
+            speed = Settings.practiceCursorParams[Settings.practiceCount]["speed"] * 160;
+            delay = Settings.practiceCursorParams[Settings.practiceCount]["delay"] / 1000;
+            this.transform.localScale = new Vector2(
+                Settings.practiceCursorParams[Settings.practiceCount]["diameter"] / 10,
+                Settings.practiceCursorParams[Settings.practiceCount]["diameter"] / 10
+            );
         }
         else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
         {
@@ -48,7 +53,7 @@ public class CursorObject : MonoBehaviour
         }
         if(Settings.isPractice)
         {
-            torus(Settings.ScreenHeight);
+            torus(Settings.practiceCursorParams[Settings.practiceCount]["window"]);
         }
         else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
         {

@@ -10,46 +10,53 @@ public class Settings : MonoBehaviour
 
     // windowサイズ
     public static float ScreenWidth, ScreenHeight;// 必要か要吟味
-    public static List<float> windowSizes = new List<float>(){ 540, 810, 1080 };
+
+    public static List<float> cursorDiameters = new List<float>() { 10 };
+    public static List<float> windowSizes = new List<float>(){ 1080 };
+    public static List<float> cursornums = new List<float>(){ 10 }; // これ全部で1セッション
+    public static List<float> cursorSpeeds = new List<float>(){ 1.0f };
+    public static List<float> cursorDelays = new List<float>(){ 0 };
 
     public static string userName;
 
     //c/d比
     public static float cursorSpeed = 1.0f;
-    public static List<float> cursorSpeeds = new List<float>(){ 0.5f, 1.0f, 2.0f};
 
     // 直径
     public static float cursorDiameter = 10f; // 消す
-    public static List<float> cursorDiameters = new List<float>(){ 10, 20, 30};
+    
+    public static int[] practiceCursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
 
     // 遅延
     public static float cursorDelay = 0f;
-    public static List<float> cursorDelays = new List<float>(){ 0, 500, 1000};
 
     //カーソル数管理
-    public static int[] practiceCursornums = { 5, 10, 20, 50 }; // これ全部で1セッション
-    public static List<float> cursornums = new List<float>(){ 5, 10, 20, 50 }; // これ全部で1セッション
 
-    // 練習中
-    public static List<int> practiceCursorNum = new List<int>();
-    //セッション数管理
-    int practiceSessionCount = 1; // 練習のセッション数
+
+    // 練習中 //
+    // 練習のパラメータ管理
+    public static List<Dictionary<string, float>> practiceCursorParams = new List<Dictionary<string, float>>();
+    // 練習のセッション数
+    int practiceSessionCount = 1;
     public static int practiceCount = 0;
     public static int practiceCountMax;
 
-  // 本番中
-    // public static List<int> experimentCursorNum = new List<int>();
+
+    // 本番中 //
+    // 本番のパラメータ管理
     public static List<Dictionary<string, float>> experimentCursorParams = new List<Dictionary<string, float>>();
-    public static Dictionary<string, float> experimentCursorParam = new Dictionary<string, float>();
-    public static int experimentSessionCount = 5; //パターンごとのセッション数
+    // セッション数
+    public static int experimentSessionCount = 5;
+    // 現在の回数
     public static int experimentCount = 0;
-    
+    // 総回数
     public static int experimentCountMax;
 
 
-    // 練習かどうか
+    // 練習or本番
     public static bool isPractice = true;
-
+    // 制限時間があるか否か
+    public static bool isLimitedTime = true;
     //タイムリミット
     public static int timeLimitSeconds = 60;
 
@@ -68,13 +75,34 @@ public class Settings : MonoBehaviour
     // 練習の準備
     void setPracticeCursorNum()
     {
-    practiceCursorNum.Clear();
+    practiceCursorParams.Clear();
+    practiceCountMax = 0;
     for (int i = 0; i < practiceSessionCount; i++)
     {
-        foreach (int cursornum in practiceCursornums)
-        practiceCursorNum.Add(cursornum);
+        foreach (int cursornum in cursornums)
+        { // カーソル数
+            foreach (float diameter in cursorDiameters)
+            { // カーソル直径
+                foreach (float window in windowSizes)
+                { // ウィンドウサイズ
+                    foreach (float delay in cursorDelays)
+                    { // 遅延
+                        foreach (float speed in cursorSpeeds)
+                        { // 速度
+                            practiceCursorParams.Add(new Dictionary<string, float>(){
+                                            {"cursornum", cursornum},
+                                            {"diameter", diameter},
+                                            {"window", window},
+                                            {"delay", delay},
+                                            {"speed", speed}
+                                        });
+                            practiceCountMax++;
+                        }
+                    }
+                }
+            }
+        }
     }
-    practiceCountMax = practiceCursorNum.Count;
     }
 
     // 本番用
@@ -109,7 +137,7 @@ public class Settings : MonoBehaviour
     // カーソル数
     public static int getCursorNum()
     {
-        if (isPractice) return practiceCursorNum[practiceCount];
+        if (isPractice) return (int)practiceCursorParams[practiceCount]["cursornum"];
         else return (int)experimentCursorParams[experimentCount]["cursornum"];
     }
 

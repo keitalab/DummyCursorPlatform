@@ -16,11 +16,11 @@ public class StatusTextControllerScript : MonoBehaviour
             statusText.text =
             "練習:" + (Settings.practiceCount + 1)
             + "/" + Settings.practiceCountMax
-            + "\n" + "カーソル数: " + Settings.practiceCursorNum[Settings.practiceCount];
-            diameter.text = Settings.cursorDiameter.ToString() + "px";
-            window_size.text = Settings.ScreenHeight.ToString() + "px";
-            delay.text = Settings.cursorDelay.ToString() + "ms";
-            speed_rate.text = Settings.cursorSpeed.ToString() + "倍";
+            + "\n" + "カーソル数: " + (int)Settings.practiceCursorParams[Settings.practiceCount]["cursornum"];
+            diameter.text = Settings.practiceCursorParams[Settings.practiceCount]["diameter"].ToString() + "px";
+            window_size.text = Settings.practiceCursorParams[Settings.practiceCount]["window"].ToString() + "px";
+            delay.text = Settings.practiceCursorParams[Settings.practiceCount]["delay"].ToString() + "ms";
+            speed_rate.text = Settings.practiceCursorParams[Settings.practiceCount]["speed"].ToString() + "倍";
         }
         else
         {
