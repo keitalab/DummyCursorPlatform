@@ -17,7 +17,6 @@ public class Settings : MonoBehaviour
     public static List<float> cursorSpeeds = new List<float>(){ 1.0f };
     public static List<float> cursorDelays = new List<float>(){ 0 };
 
-
     public static string userName;
 
     //c/d比
@@ -32,6 +31,7 @@ public class Settings : MonoBehaviour
     public static float cursorDelay = 0f;
 
     //カーソル数管理
+
 
     // 練習中 //
     // 練習のパラメータ管理
@@ -59,8 +59,6 @@ public class Settings : MonoBehaviour
     public static bool isLimitedTime = true;
     //タイムリミット
     public static int timeLimitSeconds = 60;
-
-
 
     void Start()
     {
@@ -166,11 +164,11 @@ public class Settings : MonoBehaviour
         Settings.cursorSpeeds.Clear();
         Settings.windowSizes.Clear();
         // 初期値に戻す
-        Settings.cursornums.AddRange(new List<float>() { 10 });
-        Settings.cursorDelays.AddRange(new List<float>() { 0 });
-        Settings.cursorDiameters.AddRange(new List<float>() { 10 });
-        Settings.cursorSpeeds.AddRange(new List<float>() { 1.0f });
-        Settings.windowSizes.AddRange(new List<float>() { 1080 });
+        Settings.cursornums.AddRange(new List<float>() { 5, 10, 20, 50 });
+        Settings.cursorDelays.AddRange(new List<float>() { 0, 500, 1000 });
+        Settings.cursorDiameters.AddRange(new List<float>() { 10, 20, 30 });
+        Settings.cursorSpeeds.AddRange(new List<float>() { 0.5f, 1.0f, 2.0f });
+        Settings.windowSizes.AddRange(new List<float>() { 540, 810, 1080 });
         Settings.experimentSessionCount = 5;
     }
 

@@ -16,8 +16,6 @@ public class CursorObject : MonoBehaviour
     float timer = 0f;
     float waitingTime = 0.1f;
 
-    public Camera _camera;
-
     void Start()
     {
         if(Settings.isPractice)
@@ -36,8 +34,8 @@ public class CursorObject : MonoBehaviour
             speed = Settings.experimentCursorParams[Settings.experimentCount]["speed"] * 100;
             delay = Settings.experimentCursorParams[Settings.experimentCount]["delay"] / 1000;
             this.transform.localScale = new Vector2(
-                Settings.experimentCursorParams[Settings.experimentCount]["diameter"] / 10,
-                Settings.experimentCursorParams[Settings.experimentCount]["diameter"] / 10
+                Settings.experimentCursorParams[Settings.experimentCount]["diameter"],
+                Settings.experimentCursorParams[Settings.experimentCount]["diameter"]
             );
         }
     }
