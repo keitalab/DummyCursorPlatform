@@ -60,6 +60,9 @@ public class Settings : MonoBehaviour
     //タイムリミット
     public static int timeLimitSeconds = 60;
 
+    //アイトラッキングモードかどうか
+    public static bool isEyetrackingMode = false;
+
     void Start()
     {
         DontDestroyOnLoad(this);
