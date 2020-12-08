@@ -68,13 +68,13 @@ namespace Tobii.Research.Unity {
 
         #region Inspector Properties
 
-        [SerializeField]
-        [Tooltip ("Connect to the first found eye tracker. Otherwise use provided serial number.")]
-        private bool _connectToFirst;
+        // [SerializeField]
+        // [Tooltip ("Connect to the first found eye tracker. Otherwise use provided serial number.")]
+        // private bool _connectToFirst;
 
-        [SerializeField]
-        [Tooltip ("Check for this specific eyetracker serial number. Matches start of string so a partial start of a serial number can be used.")]
-        private string _eyeTrackerSerialStart = "IS";
+        // [SerializeField]
+        // [Tooltip ("Check for this specific eyetracker serial number. Matches start of string so a partial start of a serial number can be used.")]
+        // private string _eyeTrackerSerialStart = "IS";
 
         #endregion Inspector Properties
 
@@ -154,13 +154,11 @@ namespace Tobii.Research.Unity {
                     var eyeTrackers = EyeTrackingOperations.FindAllEyeTrackers ();
 
                     foreach (var eyeTrackerEntry in eyeTrackers) {
-                        if (Settings.isEyetrackingMode) {
                             FoundEyeTracker = eyeTrackerEntry;
                             Debug.Log(FoundEyeTracker.ToString());
                             AutoConnectThreadRunning = false;
                             Settings.isFoundEyetracker = true;
                             return;
-                        }
                     }
 
                     Thread.Sleep (200);

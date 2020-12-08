@@ -40,8 +40,8 @@ namespace Tobii.Research.Unity
         /// (0.8f, 0.8f)
         /// (0.5f, 0.5f)
         /// </summary>
-        [SerializeField]
-        [Tooltip("Calibration points.")]
+        // [SerializeField]
+        // [Tooltip("Calibration points.")]
         private Vector2[] _points;
 
         [SerializeField]
@@ -84,8 +84,10 @@ namespace Tobii.Research.Unity
 
         private void Start()
         {
+            _points = Settings.calibrationPoints;
             _pointScript = _calibrationPoint.GetComponent<CalibrationPoint>();
             ShowCalibrationPanel = false;
+            DontDestroyOnLoad (this);
         }
 
         /// <summary>
@@ -242,7 +244,7 @@ namespace Tobii.Research.Unity
 
         private void Update()
         {
-            if (Input.GetKeyDown(_startKey)&&Settings.isEyetrackingMode&&Settings.isFoundEyetracker)
+            if (Input.GetKeyDown(_startKey)&&Settings.isEyetrackingMode)
             {
                 var calibrationStartResult = StartCalibration(
                     resultCallback: (calibrationResult) =>
