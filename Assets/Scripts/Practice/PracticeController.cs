@@ -38,7 +38,7 @@ public class PracticeController : MonoBehaviour
             Settings.practiceCursorParams[Settings.practiceCount]["window"] / 4
         );
         // 画面サイズごとにカメラのサイズを調整
-        _camera.orthographicSize = Screen.height / 2;
+        Camera.main.orthographicSize = Screen.height / 2;
 
     }
 
