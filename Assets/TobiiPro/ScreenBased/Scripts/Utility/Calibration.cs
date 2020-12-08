@@ -6,10 +6,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Tobii.Research.Unity
-{
-    public class Calibration : MonoBehaviour
-    {
+namespace Tobii.Research.Unity {
+    public class Calibration : MonoBehaviour {
         /// <summary>
         /// Instance of <see cref="Calibration"/> for easy access.
         /// Assigned in Awake() so use earliest in Start().
@@ -28,7 +26,7 @@ namespace Tobii.Research.Unity
         public bool CalibrationInProgress { get { return _calibrationInProgress; } }
 
         [SerializeField]
-        [Tooltip("This key will start a calibration.")]
+        [Tooltip ("This key will start a calibration.")]
         private KeyCode _startKey = KeyCode.None;
 
         /// <summary>
@@ -59,33 +57,28 @@ namespace Tobii.Research.Unity
         private CalibrationThread _calibrationThread;
         private bool _calibrationInProgress;
 
-        private bool ShowCalibrationPanel
-        {
-            get
-            {
+        private bool ShowCalibrationPanel {
+            get {
                 return _showCalibrationPanel;
             }
 
-            set
-            {
+            set {
                 _showCalibrationPanel = value;
-                _pointScript.gameObject.SetActive(_showCalibrationPanel);
-                _canvas.gameObject.SetActive(_showCalibrationPanel);
-                _panel.color = _showCalibrationPanel ? Color.black : new Color(0, 0, 0, 0);
+                _pointScript.gameObject.SetActive (_showCalibrationPanel);
+                _canvas.gameObject.SetActive (_showCalibrationPanel);
+                _panel.color = _showCalibrationPanel ? Color.black : new Color (0, 0, 0, 0);
             }
         }
 
         private bool _showCalibrationPanel;
 
-        private void Awake()
-        {
+        private void Awake () {
             Instance = this;
         }
 
-        private void Start()
-        {
+        private void Start () {
             _points = Settings.calibrationPoints;
-            _pointScript = _calibrationPoint.GetComponent<CalibrationPoint>();
+            _pointScript = _calibrationPoint.GetComponent<CalibrationPoint> ();
             ShowCalibrationPanel = false;
             DontDestroyOnLoad (this);
         }
@@ -98,16 +91,14 @@ namespace Tobii.Research.Unity
         /// <param name="points">An array of calibration points, or null for default.</param>
         /// <param name="resultCallback">A result callback or null for none.</param>
         /// <returns>True if calibration was not already started, false otherwise.</returns>
-        public bool StartCalibration(Vector2[] points = null, System.Action<bool> resultCallback = null)
-        {
-            if (_calibrationInProgress)
-            {
-                Debug.Log("Already performing calibration");
+        public bool StartCalibration (Vector2[] points = null, System.Action<bool> resultCallback = null) {
+            if (_calibrationInProgress) {
+                Debug.Log ("Already performing calibration");
                 return false;
             }
 
             _calibrationInProgress = true;
-            StartCoroutine(PerformCalibration(points, resultCallback));
+            StartCoroutine (PerformCalibration (points, resultCallback));
             return true;
         }
 
@@ -116,15 +107,13 @@ namespace Tobii.Research.Unity
         /// </summary>
         /// <param name="result">The method result</param>
         /// <returns>An enumerator</returns>
-        private IEnumerator WaitForResult(CalibrationThread.MethodResult result)
-        {
+        private IEnumerator WaitForResult (CalibrationThread.MethodResult result) {
             // Wait for the thread to finish the blocking call.
-            while (!result.Ready)
-            {
-                yield return new WaitForSeconds(0.02f);
+            while (!result.Ready) {
+                yield return new WaitForSeconds (0.02f);
             }
 
-            Debug.Log(result);
+            Debug.Log (result);
         }
 
         /// <summary>
@@ -133,37 +122,31 @@ namespace Tobii.Research.Unity
         /// <param name="points">Optional point list. Null means default set.</param>
         /// <param name="resultCallback">A result callback or null for none.</param>
         /// <returns>An enumerator</returns>
-        private IEnumerator PerformCalibration(Vector2[] points, System.Action<bool> resultCallback)
-        {
-            if (points != null)
-            {
+        private IEnumerator PerformCalibration (Vector2[] points, System.Action<bool> resultCallback) {
+            if (points != null) {
                 _points = points;
             }
 
-            if (_calibrationThread != null)
-            {
-                _calibrationThread.StopThread();
+            if (_calibrationThread != null) {
+                _calibrationThread.StopThread ();
                 _calibrationThread = null;
             }
 
             // Create and start the calibration thread.
-            _calibrationThread = new CalibrationThread(EyeTracker.Instance.EyeTrackerInterface, screenBased: true);
+            _calibrationThread = new CalibrationThread (EyeTracker.Instance.EyeTrackerInterface, screenBased : true);
 
             // Only continue if the calibration thread is running.
-            for (int i = 0; i < 10; i++)
-            {
-                if (_calibrationThread.Running)
-                {
+            for (int i = 0; i < 10; i++) {
+                if (_calibrationThread.Running) {
                     break;
                 }
 
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds (0.1f);
             }
 
-            if (!_calibrationThread.Running)
-            {
-                Debug.LogError("Failed to start calibration thread");
-                _calibrationThread.StopThread();
+            if (!_calibrationThread.Running) {
+                Debug.LogError ("Failed to start calibration thread");
+                _calibrationThread.StopThread ();
                 _calibrationThread = null;
                 _calibrationInProgress = false;
                 yield break;
@@ -171,48 +154,46 @@ namespace Tobii.Research.Unity
 
             ShowCalibrationPanel = true;
 
-            var enterResult = _calibrationThread.EnterCalibrationMode();
+            var enterResult = _calibrationThread.EnterCalibrationMode ();
 
             // Wait for the call to finish
-            yield return StartCoroutine(WaitForResult(enterResult));
+            yield return StartCoroutine (WaitForResult (enterResult));
 
             // Iterate through the calibration points.
-            foreach (var pointPosition in _points)
-            {
+            foreach (var pointPosition in _points) {
                 // Set the local position and start the point animation
-                _calibrationPoint.rectTransform.anchoredPosition = new Vector2(Screen.width * pointPosition.x, Screen.height * (1 - pointPosition.y));
-                _pointScript.StartAnim();
+                _calibrationPoint.rectTransform.anchoredPosition = new Vector2 (Screen.width * pointPosition.x, Screen.height * (1 - pointPosition.y));
+                _pointScript.StartAnim ();
 
                 // Wait for animation.
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds (1f);
 
                 // As of this writing, adding a point takes about 175 ms. A failing add can take up to 3000 ms.
-                var collectResult = _calibrationThread.CollectData(new CalibrationThread.Point(pointPosition));
+                var collectResult = _calibrationThread.CollectData (new CalibrationThread.Point (pointPosition));
 
                 // Wait for the call to finish
-                yield return StartCoroutine(WaitForResult(collectResult));
+                yield return StartCoroutine (WaitForResult (collectResult));
 
                 // React to the result of adding a point.
-                if (collectResult.Status == CalibrationStatus.Failure)
-                {
-                    Debug.Log("There was an error gathering data for this calibration point: " + pointPosition);
+                if (collectResult.Status == CalibrationStatus.Failure) {
+                    Debug.Log ("There was an error gathering data for this calibration point: " + pointPosition);
                 }
             }
 
             // Compute and apply the result of the calibration. A succesful compute currently takes about 300 ms. A failure may bail out in a few ms.
-            var computeResult = _calibrationThread.ComputeAndApply();
+            var computeResult = _calibrationThread.ComputeAndApply ();
 
             // Wait for the call to finish
-            yield return StartCoroutine(WaitForResult(computeResult));
+            yield return StartCoroutine (WaitForResult (computeResult));
 
             // Leave calibration mode.
-            var leaveResult = _calibrationThread.LeaveCalibrationMode();
+            var leaveResult = _calibrationThread.LeaveCalibrationMode ();
 
             // Wait for the call to finish
-            yield return StartCoroutine(WaitForResult(leaveResult));
+            yield return StartCoroutine (WaitForResult (leaveResult));
 
             // Stop the thread.
-            _calibrationThread.StopThread();
+            _calibrationThread.StopThread ();
             _calibrationThread = null;
 
             // Finish up or restart if failure.
@@ -220,9 +201,8 @@ namespace Tobii.Research.Unity
 
             ShowCalibrationPanel = false;
 
-            if (resultCallback != null)
-            {
-                resultCallback(LatestCalibrationSuccessful);
+            if (resultCallback != null) {
+                resultCallback (LatestCalibrationSuccessful);
             }
 
             _calibrationInProgress = false;
@@ -231,28 +211,22 @@ namespace Tobii.Research.Unity
         /// <summary>
         /// This function is called when the behaviour becomes disabled() or inactive.
         /// </summary>
-        private void OnDisable()
-        {
+        private void OnDisable () {
             // Stop the calibration thread if it is not null.
-            if (_calibrationThread != null)
-            {
-                var result = _calibrationThread.StopThread();
+            if (_calibrationThread != null) {
+                var result = _calibrationThread.StopThread ();
                 _calibrationThread = null;
-                Debug.Log("Calibration thread stopped: " + (result ? "YES" : "NO"));
+                Debug.Log ("Calibration thread stopped: " + (result ? "YES" : "NO"));
             }
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(_startKey)&&Settings.isEyetrackingMode)
-            {
-                var calibrationStartResult = StartCalibration(
-                    resultCallback: (calibrationResult) =>
-                        Debug.Log("Calibration was " + (calibrationResult ? "successful" : "unsuccessful"))
-                    );
+        public void Calibrate () {
+            var calibrationStartResult = StartCalibration (
+                resultCallback: (calibrationResult) =>
+                Debug.Log ("Calibration was " + (calibrationResult ? "successful" : "unsuccessful"))
+            );
 
-                Debug.Log("Calibration " + (calibrationStartResult ? "" : "not ") + "started");
-            }
+            Debug.Log ("Calibration " + (calibrationStartResult ? "" : "not ") + "started");
         }
     }
 }
