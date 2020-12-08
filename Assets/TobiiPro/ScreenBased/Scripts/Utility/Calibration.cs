@@ -242,7 +242,7 @@ namespace Tobii.Research.Unity
 
         private void Update()
         {
-            if (Input.GetKeyDown(_startKey))
+            if (Input.GetKeyDown(_startKey)&&Settings.isEyetrackingMode&&Settings.isFoundEyetracker)
             {
                 var calibrationStartResult = StartCalibration(
                     resultCallback: (calibrationResult) =>

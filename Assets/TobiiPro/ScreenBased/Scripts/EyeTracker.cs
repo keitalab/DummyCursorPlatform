@@ -158,6 +158,7 @@ namespace Tobii.Research.Unity {
                             FoundEyeTracker = eyeTrackerEntry;
                             Debug.Log(FoundEyeTracker.ToString());
                             AutoConnectThreadRunning = false;
+                            Settings.isFoundEyetracker = true;
                             return;
                         }
                     }
