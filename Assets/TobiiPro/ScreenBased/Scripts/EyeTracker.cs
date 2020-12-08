@@ -100,8 +100,15 @@ namespace Tobii.Research.Unity {
         #region Unity Methods
 
         protected override void OnAwake () {
-            Instance = this;
-            base.OnAwake ();
+            if (Instance == null) {
+
+                Instance = this;
+                base.OnAwake ();
+                DontDestroyOnLoad (this);
+            } else {
+                Destroy (this);
+            }
+
         }
 
         protected override void OnStart () {
@@ -154,11 +161,12 @@ namespace Tobii.Research.Unity {
                     var eyeTrackers = EyeTrackingOperations.FindAllEyeTrackers ();
 
                     foreach (var eyeTrackerEntry in eyeTrackers) {
-                            FoundEyeTracker = eyeTrackerEntry;
-                            Debug.Log(FoundEyeTracker.ToString());
-                            AutoConnectThreadRunning = false;
-                            Settings.isFoundEyetracker = true;
-                            return;
+                        FoundEyeTracker = eyeTrackerEntry;
+                        Settings.eyetrackerName = FoundEyeTracker.SerialNumber.ToString ();
+                        // Debug.Log (FoundEyeTracker.SerialNumber.ToString ());
+                        AutoConnectThreadRunning = false;
+                        Settings.isFoundEyetracker = true;
+                        return;
                     }
 
                     Thread.Sleep (200);

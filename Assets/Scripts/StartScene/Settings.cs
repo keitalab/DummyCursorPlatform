@@ -5,6 +5,8 @@ using System.Linq;
 using UnityEngine;
 
 public class Settings : MonoBehaviour {
+    public static Settings Instance;
+
     public Camera _camera;
 
     // windowサイズ
@@ -57,7 +59,8 @@ public class Settings : MonoBehaviour {
     public static int timeLimitSeconds = 60;
 
     //アイトラッキングモードかどうか
-    public static bool isEyetrackingMode = true;
+    public static bool isEyetrackingMode = false;
+    //アイトラッカーを取得しているのか
     public static bool isFoundEyetracker = false;
     public static Vector2[] calibrationPoints = {
         new Vector2 (0.2f, 0.2f),
@@ -67,9 +70,15 @@ public class Settings : MonoBehaviour {
         new Vector2 (0.5f, 0.5f)
     };
     public static Vector2 gazePos;
+    public static String eyetrackerName = "Not Found";
+
+    void Awake () {
+        if (Instance == null) DontDestroyOnLoad (this);
+        else Destroy (this);
+    }
 
     void Start () {
-        DontDestroyOnLoad (this);
+
         if (!ParametersController.isSet) {
             ScreenHeight = 2 * _camera.orthographicSize;
             ScreenWidth = ScreenHeight * Screen.width / Screen.height;
