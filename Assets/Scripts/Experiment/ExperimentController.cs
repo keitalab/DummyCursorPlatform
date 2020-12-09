@@ -15,8 +15,15 @@ public class ExperimentController : MonoBehaviour {
     public GameObject background;
     bool isShowCursorId; // カーソルidを見せているか, 
     float firstMillis;
-    void Start () {
-        int cursornum = Settings.getCursorNum (); // カーソル数取得
+
+    public Camera _camera;
+
+    bool isPressSpace;
+    
+    void Start()
+    {
+        // カーソル数取得
+        int cursornum = Settings.getCursorNum(); 
         // カーソル準備キットみたいなもの
         cursorManager = Instantiate (_cursorManager, new Vector3 (0, 0, 0), Quaternion.identity);
         // カーソルの事前準備
