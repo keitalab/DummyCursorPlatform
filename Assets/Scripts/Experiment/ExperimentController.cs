@@ -22,7 +22,8 @@ public class ExperimentController : MonoBehaviour
     bool isPressSpace;
     void Start()
     {
-        int cursornum = Settings.getCursorNum(); // カーソル数取得
+        // カーソル数取得
+        int cursornum = Settings.getCursorNum(); 
         // カーソル準備キットみたいなもの
         cursorManager = Instantiate(_cursorManager, new Vector3(0, 0, 0), Quaternion.identity);
         // カーソルの事前準備
