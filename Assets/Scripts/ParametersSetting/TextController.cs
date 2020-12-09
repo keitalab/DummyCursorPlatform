@@ -12,6 +12,7 @@ public class TextController : MonoBehaviour
     public Text speedText;
     public Text sessionText;
     public Text countMax;
+    public Text timeLimit;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,17 @@ public class TextController : MonoBehaviour
         paramsText(delayText, Settings.cursorDelays);
         paramsText(speedText, Settings.cursorSpeeds);
         sessionText.text = Settings.experimentSessionCount.ToString();
+        if(Settings.isLimitedTime)
+        {
+        timeLimit.text = Settings.timeLimitSeconds.ToString();
+        timeLimit.fontSize = 30;
+        }
+        else
+        {
+        timeLimit.text = "∞";
+        timeLimit.fontSize = 50;
+        }
+        
         ChangeCountMax();
     }
 
