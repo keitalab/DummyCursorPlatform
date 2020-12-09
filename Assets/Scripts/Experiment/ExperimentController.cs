@@ -20,6 +20,7 @@ public class ExperimentController : MonoBehaviour
     public Camera _camera;
 
     bool isPressSpace;
+    
     void Start()
     {
         // カーソル数取得
