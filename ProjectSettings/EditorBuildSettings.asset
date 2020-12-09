@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/CountDown.unity
     guid: f51eaf39ee2f14a80b6deb08205bd034
   - enabled: 1
-    path: Assets/Scenes/GazeCheck.unity
-    guid: 44e7dc22c06b8b44ab2eef36ca0e7ad4
-  - enabled: 1
     path: Assets/Scenes/Practice.unity
     guid: 96b7d1ef728b441f991f980d3282c8f0
   - enabled: 1
