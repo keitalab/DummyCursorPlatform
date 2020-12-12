@@ -7,8 +7,9 @@ public class Table
 {
     List<TableRow> rows;
     List<string> columns;
-    List<string> columnTitles;
-    string savePath;
+    // List<string> columnTitles;
+
+    string filePath;
 
     public Table()
     {
@@ -31,8 +32,21 @@ public class Table
 
     public void save(String _fileName)
     {
+        // LogDataファイルがなければ作成
+        if (!Directory.Exists("LogData"))
+        {
+        Directory.CreateDirectory("LogData");
+        }
         // /(スラッシュ)付きでパスの連結 dataPath/fileName
-        string filePath = Path.Combine(Application.dataPath, @_fileName);
+        // .app(Macでのアプリケーション)の時のみパスが異なる
+        if(Application.platform == RuntimePlatform.OSXPlayer)
+        {
+            filePath = Path.Combine(Application.dataPath, "../../"+@_fileName);
+        }
+        else
+        {
+            filePath = Path.Combine(Application.dataPath, @_fileName);
+        }
         // Substring(部分文字列抽出) LastIndexOf(文字列が最後に見つかった場所)
         // StringComparison.CurrentCultureは形式的
         string dirPath = filePath.Substring(0, filePath.LastIndexOf("/", StringComparison.CurrentCulture));
