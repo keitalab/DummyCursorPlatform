@@ -7,8 +7,8 @@ public class Table
 {
     List<TableRow> rows;
     List<string> columns;
-    List<string> columnTitles;
-    string savePath;
+    // List<string> columnTitles;
+
     string filePath;
 
     public Table()

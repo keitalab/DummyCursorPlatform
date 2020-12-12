@@ -10,7 +10,8 @@ public class StartButton : MonoBehaviour
     {
         if(Settings.userName != null)
         {
-            SceneManager.LoadScene("CountDown");
+            if(Settings.isEyetrackingMode) SceneManager.LoadScene("GazeCheck");
+            else SceneManager.LoadScene("CountDown");
             // Canvasを非表示に
             _canvas.gameObject.SetActive(false);
         }
