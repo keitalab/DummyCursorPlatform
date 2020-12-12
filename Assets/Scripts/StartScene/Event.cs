@@ -1,21 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
-public class Event : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        DontDestroyOnLoad(this);
+public class Event : MonoBehaviour {
+    public static Event Instance;
+
+    void Awake () {
+        if (Instance == null) DontDestroyOnLoad (this);
+        else Destroy (this);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-            Settings.Quit();
+    void Update () {
+        if (Input.GetKeyDown (KeyCode.Escape))
+            Settings.Quit ();
 
     }
 }
