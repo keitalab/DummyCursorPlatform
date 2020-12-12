@@ -13,10 +13,10 @@ public class CountDownControllerScript : MonoBehaviour
   // Use this for initialization
   void Start()
   {
-    // // カーソルを固定→いくらでも動かせる
-    // Cursor.lockState = CursorLockMode.Locked;
-    // // カーソルが見えなくなる
-    // Cursor.visible = false;
+    // カーソルを固定→いくらでも動かせる
+    Cursor.lockState = CursorLockMode.Locked;
+    // カーソルが見えなくなる
+    Cursor.visible = false;
   }
 
   // Update is called once per frame
