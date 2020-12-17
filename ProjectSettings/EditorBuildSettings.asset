@@ -27,6 +27,14 @@ EditorBuildSettings:
     path: Assets/Scenes/ParametersSetting.unity
     guid: b949107d3d3f54e218a6f6e8cda37707
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Scenes/GazeCheck.unity
     guid: 44e7dc22c06b8b44ab2eef36ca0e7ad4
+=======
+    path: Assets/Scenes/SelectFile.unity
+    guid: 2e92135a87f674e1598b038e7cafb411
+  - enabled: 1
+    path: Assets/Scenes/CursorAnimation.unity
+    guid: 5f3f552ce6e88403685970c0ad7a7b5c
+>>>>>>> Stashed changes
   m_configObjects: {}

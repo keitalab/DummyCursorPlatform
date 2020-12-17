@@ -15,7 +15,6 @@ public class GetGazePoints : MonoBehaviour {
         if (!_eyeTracker) {
             return;
         }
-        // Camera.main.orthographicSize = Screen.height / 2;
         float height = 2 * Camera.main.orthographicSize;
         float width = height * Screen.width / Screen.height;
         Vector2 rightGazePos = _eyeTracker.LatestProcessedGazeData.Right.GazePointOnDisplayArea;

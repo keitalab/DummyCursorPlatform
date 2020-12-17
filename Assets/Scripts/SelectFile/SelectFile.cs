@@ -7,8 +7,15 @@ using System.IO;
 
 public class SelectFile : MonoBehaviour
 {
-    List<string[]> csvDatas;
-    bool isFirst = true;
+  List<string> csvDatas;
+  public static List<float> LogCursorX = new List<float>();
+  public static List<float> LogCursorY = new List<float>();
+  public static float LogDiameter;
+  public static float LogWindowSize;
+  public static List<float> LogGazeX = new List<float>();
+  public static List<float> LogGazeY = new List<float>();
+  bool isFirst = true;
+  public static int count=0;
     public void OpenFile()
     {
         var path = EditorUtility.OpenFilePanel("Open csv", "", "CSV");
@@ -22,18 +29,19 @@ public class SelectFile : MonoBehaviour
             // 読み込んだ一行をカンマ毎に分けて配列に格納する
             string[] values = line.Split(',');
             // 配列からリストに格納する
-            csvDatas = new List<string[]>();
-            // 前に追加されている？
-            // csvの一番したがcsvDatasの0番目
             if(!isFirst)
             {
-            if(int.Parse(values[2]) == 0)
-            {
-            csvDatas.Add(values);
-            Debug.Log(csvDatas[0][2]);
-            }
+                if(int.Parse(values[2]) == 0)
+                {
+                    LogCursorX.Add(float.Parse(values[4]));
+                    LogCursorY.Add(float.Parse(values[5]));
+                    LogDiameter = float.Parse(values[7]);
+                    LogWindowSize = float.Parse(values[8]);
+                    count++;
+                }
             }
             isFirst = false;
+            // コンソールに出力する
         }
     }
 }
