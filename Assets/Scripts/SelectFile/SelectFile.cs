@@ -7,7 +7,7 @@ using System.IO;
 
 public class SelectFile : MonoBehaviour
 {
-  List<string> csvDatas;
+  public static string userName;
   public static List<float> LogCursorX = new List<float>();
   public static List<float> LogCursorY = new List<float>();
   public static float LogDiameter;
@@ -33,6 +33,7 @@ public class SelectFile : MonoBehaviour
             {
                 if(int.Parse(values[2]) == 0)
                 {
+                    userName = values[0];
                     LogCursorX.Add(float.Parse(values[4]));
                     LogCursorY.Add(float.Parse(values[5]));
                     LogDiameter = float.Parse(values[7]);

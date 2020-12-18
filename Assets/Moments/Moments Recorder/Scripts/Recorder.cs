@@ -27,6 +27,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Moments.Encoder;
 using ThreadPriority = System.Threading.ThreadPriority;
+using System.IO;
 
 namespace Moments
 {
@@ -339,11 +340,21 @@ namespace Moments
 			m_TimePerFrame = 1f / m_FramePerSecond;
 			m_Time = 0f;
 
-			// Make sure the output folder is set or use the default one
+      // Make sure the output folder is set or use the default one
+			Directory.CreateDirectory("Assets/LogData/" + SelectFile.userName + "-gif");
+			if(Directory.Exists("LogData/ogapy-gif")) Debug.Log("true");
+			else Debug.Log("false");
 			if (string.IsNullOrEmpty(SaveFolder))
 			{
 				#if UNITY_EDITOR
-				SaveFolder = Application.dataPath; // Defaults to the asset folder in the editor for faster access to the gif file
+				if(Application.platform == RuntimePlatform.OSXPlayer)
+				{
+				SaveFolder = Application.dataPath + "../../" + SelectFile.userName + "-gif"; // Defaults to the asset folder in the editor for faster access to the gif file
+				}
+				else
+				{
+        SaveFolder = Application.dataPath + "/LogData/" + SelectFile.userName + "-gif";
+				}
 				#else
 				SaveFolder = Application.persistentDataPath;
 				#endif
