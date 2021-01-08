@@ -7,15 +7,15 @@ using System.IO;
 
 public class SelectFile : MonoBehaviour
 {
-  public static string userName;
-  public static List<float> LogCursorX = new List<float>();
-  public static List<float> LogCursorY = new List<float>();
-  public static float LogDiameter;
-  public static float LogWindowSize;
-  public static List<float> LogGazeX = new List<float>();
-  public static List<float> LogGazeY = new List<float>();
-  bool isFirst = true;
-  public static int count=0;
+    public static string userName;
+    public static List<float> LogCursorX = new List<float>();
+    public static List<float> LogCursorY = new List<float>();
+    public static float LogDiameter;
+    public static float LogWindowSize;
+    public static List<float> LogGazeX = new List<float>();
+    public static List<float> LogGazeY = new List<float>();
+    bool isFirst = true;
+    public static int count=0;
     public void OpenFile()
     {
         var path = EditorUtility.OpenFilePanel("Open csv", "", "CSV");
