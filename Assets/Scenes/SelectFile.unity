@@ -303,7 +303,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 612.8, y: 113.3}
+  m_SizeDelta: {x: 2000, y: 113.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &316444446
 MonoBehaviour:
@@ -338,7 +338,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: username_2020-12-12-12-24-30.csv
+  m_Text: 
 --- !u!222 &316444447
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -736,6 +736,7 @@ GameObject:
   - component: {fileID: 1394375242}
   - component: {fileID: 1394375241}
   - component: {fileID: 1394375240}
+  - component: {fileID: 1394375243}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -805,7 +806,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1394375241}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1394375243}
+        m_TargetAssemblyTypeName: QuitButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1394375241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,6 +857,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394375238}
   m_CullTransparentMesh: 0
+--- !u!114 &1394375243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394375238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4222a50dc83e0468b9f5fde4eb4c2f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1424114375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb434ec64be314270b41be17e0726ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileName: {fileID: 316444446}
 --- !u!1 &1755710971
 GameObject:
   m_ObjectHideFlags: 0

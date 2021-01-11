@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using SFB;
+using UnityEngine.UI;
 
 public class SelectFile : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class SelectFile : MonoBehaviour
     public static List<float> LogGazeY = new List<float>();
     bool isFirst = true;
     public static int count=0;
+    public Text fileName;
+
     public void OpenFile()
     {
         // var path = EditorUtility.OpenFilePanel("Open csv", "", "CSV");
@@ -23,6 +26,7 @@ public class SelectFile : MonoBehaviour
         if(string.IsNullOrEmpty(path[0])) return;
         StreamReader reader = new StreamReader(path[0]);
         // 末尾まで繰り返す
+        fileName.text = path[0];
         while (!reader.EndOfStream)
         {
             // CSVファイルの一行を読み込む
