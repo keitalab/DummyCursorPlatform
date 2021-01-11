@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-
+using SFB;
 
 public class SelectFile : MonoBehaviour
 {
@@ -18,9 +18,10 @@ public class SelectFile : MonoBehaviour
     public static int count=0;
     public void OpenFile()
     {
-        var path = EditorUtility.OpenFilePanel("Open csv", "", "CSV");
-        if(string.IsNullOrEmpty(path)) return;
-        StreamReader reader = new StreamReader(path);
+        // var path = EditorUtility.OpenFilePanel("Open csv", "", "CSV");
+        var path = StandaloneFileBrowser.OpenFilePanel( "Open csv File", "", "csv", true );
+        if(string.IsNullOrEmpty(path[0])) return;
+        StreamReader reader = new StreamReader(path[0]);
         // 末尾まで繰り返す
         while (!reader.EndOfStream)
         {
