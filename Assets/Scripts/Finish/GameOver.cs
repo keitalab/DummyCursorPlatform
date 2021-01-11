@@ -13,7 +13,7 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - firstMillis > 3)
-            Settings.Quit();
+        // if (Time.time - firstMillis > 3)
+        //     Settings.Quit();
     }
 }
