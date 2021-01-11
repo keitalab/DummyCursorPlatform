@@ -5,21 +5,13 @@ using System.IO;
 
 public class Event : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static Event Instance;
+    void Awake()
     {
-        DontDestroyOnLoad(this);
-        if(Directory.Exists("ogapy"))
-        {
-            Directory.CreateDirectory("kyon");
-        }
-        else
-        {
-            Directory.CreateDirectory("ogapy");
-        }
+        if(Instance == null) DontDestroyOnLoad(this);
+        else Destroy(this);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))

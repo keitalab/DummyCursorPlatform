@@ -16,9 +16,6 @@ public class ExperimentController : MonoBehaviour
     public GameObject background;
     bool isShowCursorId; // カーソルidを見せているか, 
     float firstMillis;
-
-    public Camera _camera;
-
     bool isPressSpace;
     
     void Start()
@@ -48,7 +45,7 @@ public class ExperimentController : MonoBehaviour
         );
 
         // 画面サイズごとにカメラのサイズを調整
-        _camera.orthographicSize = Screen.height / 2;
+        Camera.main.orthographicSize = Screen.height / 2;
         // テーブルで管理
         table = new Table();
         table.addColumn("username");
@@ -63,6 +60,11 @@ public class ExperimentController : MonoBehaviour
         table.addColumn("delay");
         table.addColumn("speed_rate");
         table.addColumn("time");
+
+        if (Settings.isEyetrackingMode) {
+            table.addColumn ("gaze_x");
+            table.addColumn ("gaze_y");
+        }
     }
 
     // Update is called once per frame
@@ -86,6 +88,11 @@ public class ExperimentController : MonoBehaviour
             newRow.setFloat("delay", Settings.experimentCursorParams[Settings.experimentCount]["delay"]);
             newRow.setFloat("speed_rate", Settings.experimentCursorParams[Settings.experimentCount]["speed"]);
             newRow.setFloat("time", Time.time - firstMillis);
+            if (Settings.isEyetrackingMode)
+            {
+            newRow.setFloat("gaze_x", Settings.gazePos.x);
+            newRow.setFloat("gaze_y", Settings.gazePos.y);
+            }
             table.addRow(newRow);
             }
         }
@@ -103,7 +110,7 @@ public class ExperimentController : MonoBehaviour
         {
             // ファイル名を設定
             string saveFileName = Settings.userName
-            + "_" + DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss-") + ".csv";
+            + "_" + DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss") + ".csv";
             table.save("LogData/" + Settings.userName + "/" + saveFileName);
             // セッション数を+1
             Settings.increaseSessionCount();

@@ -17,7 +17,6 @@ public class PracticeController : MonoBehaviour
     public GameObject background;
     bool isShowCursorId, isShowAnswer; // カーソルidを見せているか, 
     float firstMillis;
-    public Camera _camera;
     void Start()
     {
         int cursornum = Settings.getCursorNum(); // カーソル数取得
@@ -39,7 +38,7 @@ public class PracticeController : MonoBehaviour
             Settings.practiceCursorParams[Settings.practiceCount]["window"] / 4
         );
         // 画面サイズごとにカメラのサイズを調整
-        _camera.orthographicSize = Screen.height / 2;
+        Camera.main.orthographicSize = Screen.height / 2;
     }
 
     // Update is called once per frame
@@ -48,7 +47,6 @@ public class PracticeController : MonoBehaviour
         // spaceを押すとカーソルのidが表示
         if (!isShowCursorId && Input.GetKeyDown(KeyCode.Space))
         {
-            
             cursorManager.stopCursors();
             isShowCursorId = true;
             Invoke("showCursorIds", Settings.practiceCursorParams[Settings.practiceCount]["delay"] / 1000 + 0.1f);

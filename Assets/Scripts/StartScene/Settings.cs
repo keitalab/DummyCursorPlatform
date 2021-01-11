@@ -7,6 +7,7 @@ using UnityEngine;
 public class Settings : MonoBehaviour
 {
     public Camera _camera;
+    public static Settings Instance;
 
     // windowサイズ
     public static float ScreenWidth, ScreenHeight;// 必要か要吟味
@@ -60,11 +61,28 @@ public class Settings : MonoBehaviour
     //タイムリミット
     public static int timeLimitSeconds = 60;
 
+    // アイトラッキングモードかどうか
+    public static bool isEyetrackingMode = false;
+    // アイトラッカーを取得しているのか
+    public static bool isFoundEyetracker = false;
+    public static Vector2[] calibrationPoints = {
+        new Vector2 (0.2f, 0.2f),
+        new Vector2 (0.8f, 0.2f),
+        new Vector2 (0.2f, 0.8f),
+        new Vector2 (0.8f, 0.8f),
+        new Vector2 (0.5f, 0.5f)
+    };
+    public static Vector2 gazePos;
+    public static String eyetrackerName = "Not Found";
+
+    void Awake(){
+        if(Instance == null) DontDestroyOnLoad(this);
+        else Destroy(this);
+    }
 
 
     void Start()
     {
-        DontDestroyOnLoad(this);
         if(!ParametersController.isSet)
         {
             ScreenHeight = 2 * _camera.orthographicSize;

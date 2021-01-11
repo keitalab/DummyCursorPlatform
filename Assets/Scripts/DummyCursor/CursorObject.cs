@@ -16,8 +16,6 @@ public class CursorObject : MonoBehaviour
     float timer = 0f;
     float waitingTime = 0.1f;
 
-    public Camera _camera;
-
     void Start()
     {
         if(Settings.isPractice)
