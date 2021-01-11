@@ -110,7 +110,7 @@ public class ExperimentController : MonoBehaviour
         {
             // ファイル名を設定
             string saveFileName = Settings.userName
-            + "_" + DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss-") + ".csv";
+            + "_" + DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss") + ".csv";
             table.save("LogData/" + Settings.userName + "/" + saveFileName);
             // セッション数を+1
             Settings.increaseSessionCount();

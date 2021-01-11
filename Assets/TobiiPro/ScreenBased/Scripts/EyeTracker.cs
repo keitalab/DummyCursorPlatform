@@ -99,17 +99,6 @@ namespace Tobii.Research.Unity {
 
         #region Unity Methods
 
-        // protected override void OnAwake () {
-        //     if (Instance == null) {
-        //         Instance = this;
-        //         base.OnAwake ();
-        //         DontDestroyOnLoad (this);
-        //     } else {
-        //         Destroy (this);
-        //     }
-
-        // }
-
         private void Awake() {
             if (Instance == null) {
                 Instance = this;

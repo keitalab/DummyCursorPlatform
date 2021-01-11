@@ -13,13 +13,7 @@ public class TextController : MonoBehaviour
     public Text sessionText;
     public Text countMax;
     public Text timeLimit;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         paramsText(diameterText, Settings.cursorDiameters);

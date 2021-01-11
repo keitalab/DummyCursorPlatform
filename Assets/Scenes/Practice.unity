@@ -252,7 +252,6 @@ MonoBehaviour:
   textPrefab: {fileID: 1746421469}
   _canvas: {fileID: 1867247831}
   background: {fileID: 170631048}
-  _camera: {fileID: 1153902139}
 --- !u!1 &1153902137
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +460,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: cce4676dcbcf745ff88b90033e6f39a4, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
