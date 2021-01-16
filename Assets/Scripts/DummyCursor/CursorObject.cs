@@ -25,8 +25,8 @@ public class CursorObject : MonoBehaviour
             speed = Settings.practiceCursorParams[Settings.practiceCount]["speed"] * 160;
             delay = Settings.practiceCursorParams[Settings.practiceCount]["delay"] / 1000;
             this.transform.localScale = new Vector2(
-                Settings.practiceCursorParams[Settings.practiceCount]["diameter"] / 10,
-                Settings.practiceCursorParams[Settings.practiceCount]["diameter"] / 10
+                (float)(Settings.practiceCursorParams[Settings.practiceCount]["diameter"] * 4.2),
+                (float)(Settings.practiceCursorParams[Settings.practiceCount]["diameter"] * 4.2)
             );
         }
         else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
@@ -34,8 +34,8 @@ public class CursorObject : MonoBehaviour
             speed = Settings.experimentCursorParams[Settings.experimentCount]["speed"] * 100;
             delay = Settings.experimentCursorParams[Settings.experimentCount]["delay"] / 1000;
             this.transform.localScale = new Vector2(
-                Settings.experimentCursorParams[Settings.experimentCount]["diameter"] / 10,
-                Settings.experimentCursorParams[Settings.experimentCount]["diameter"] / 10
+                (float)(Settings.experimentCursorParams[Settings.experimentCount]["diameter"] * 4.2),
+                (float)(Settings.experimentCursorParams[Settings.experimentCount]["diameter"] * 4.2)
             );
         }
     }
