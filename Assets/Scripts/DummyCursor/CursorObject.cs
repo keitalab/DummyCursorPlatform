@@ -22,7 +22,7 @@ public class CursorObject : MonoBehaviour
         {
             // カーソルの速度調整
             // speed = Settings.cursorSpeed * _camera.orthographicSize / 5;
-            speed = Settings.practiceCursorParams[Settings.practiceCount]["speed"] * 160;
+            speed = Settings.practiceCursorParams[Settings.practiceCount]["speed"] * 155;
             delay = Settings.practiceCursorParams[Settings.practiceCount]["delay"] / 1000;
             this.transform.localScale = new Vector2(
                 (float)(Settings.practiceCursorParams[Settings.practiceCount]["diameter"] * 4.2),
@@ -31,7 +31,7 @@ public class CursorObject : MonoBehaviour
         }
         else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
         {
-            speed = Settings.experimentCursorParams[Settings.experimentCount]["speed"] * 100;
+            speed = Settings.experimentCursorParams[Settings.experimentCount]["speed"] * 155;
             delay = Settings.experimentCursorParams[Settings.experimentCount]["delay"] / 1000;
             this.transform.localScale = new Vector2(
                 (float)(Settings.experimentCursorParams[Settings.experimentCount]["diameter"] * 4.2),
