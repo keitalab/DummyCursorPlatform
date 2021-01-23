@@ -11,7 +11,7 @@ public class AnimationController : MonoBehaviour
     public Recorder rec;
     void Start()
     {
-        cursor.transform.localScale = new Vector2(SelectFile.LogDiameter * 10, SelectFile.LogDiameter * 10);
+        cursor.transform.localScale = new Vector2(SelectFile.LogDiameter, SelectFile.LogDiameter);
         background.transform.localScale = new Vector2(SelectFile.LogWindowSize / 4, SelectFile.LogWindowSize / 4);
         Camera.main.orthographicSize = Screen.height / 2;
         cursor = Instantiate(cursor, new Vector3(0f, 0f, 0f), Quaternion.identity);
