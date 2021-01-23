@@ -16,6 +16,10 @@ public class CursorObject : MonoBehaviour
     float timer = 0f;
     float waitingTime = 0.1f;
 
+    SpriteRenderer MainSpriteRenderer;
+    // publicで宣言し、inspectorで設定可能にする
+    public Sprite AnswerCursor;
+
     void Start()
     {
         if(Settings.isPractice)
@@ -25,8 +29,8 @@ public class CursorObject : MonoBehaviour
             speed = Settings.practiceCursorParams[Settings.practiceCount]["speed"] * 155;
             delay = Settings.practiceCursorParams[Settings.practiceCount]["delay"] / 1000;
             this.transform.localScale = new Vector2(
-                (float)(Settings.practiceCursorParams[Settings.practiceCount]["diameter"] * 4.2),
-                (float)(Settings.practiceCursorParams[Settings.practiceCount]["diameter"] * 4.2)
+                Settings.practiceCursorParams[Settings.practiceCount]["diameter"],
+                Settings.practiceCursorParams[Settings.practiceCount]["diameter"]
             );
         }
         else if(!Settings.isPractice && Settings.experimentCount < Settings.experimentCountMax)
@@ -34,10 +38,11 @@ public class CursorObject : MonoBehaviour
             speed = Settings.experimentCursorParams[Settings.experimentCount]["speed"] * 155;
             delay = Settings.experimentCursorParams[Settings.experimentCount]["delay"] / 1000;
             this.transform.localScale = new Vector2(
-                (float)(Settings.experimentCursorParams[Settings.experimentCount]["diameter"] * 4.2),
-                (float)(Settings.experimentCursorParams[Settings.experimentCount]["diameter"] * 4.2)
+                Settings.experimentCursorParams[Settings.experimentCount]["diameter"],
+                Settings.experimentCursorParams[Settings.experimentCount]["diameter"]
             );
         }
+        MainSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -94,7 +99,10 @@ public class CursorObject : MonoBehaviour
     // 実際のカーソルを赤くする
     public void showRealCursor()
     {
-        this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        // this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        Debug.Log(MainSpriteRenderer.sprite);
+        MainSpriteRenderer.sprite = AnswerCursor;
+        Debug.Log(MainSpriteRenderer.sprite);
     }
 
     // 動きを止める
