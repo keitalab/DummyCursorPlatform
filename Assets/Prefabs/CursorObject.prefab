@@ -105,3 +105,4 @@ MonoBehaviour:
   x: 0
   y: 0
   rad: 0
+  AnswerCursor: {fileID: 3286163911610860551, guid: 3382d474b30844b83955d07fe2891e45, type: 3}

@@ -16,6 +16,10 @@ public class CursorObject : MonoBehaviour
     float timer = 0f;
     float waitingTime = 0.1f;
 
+    SpriteRenderer MainSpriteRenderer;
+    // publicで宣言し、inspectorで設定可能にする
+    public Sprite AnswerCursor;
+
     void Start()
     {
         if(Settings.isPractice)
@@ -38,6 +42,7 @@ public class CursorObject : MonoBehaviour
                 Settings.experimentCursorParams[Settings.experimentCount]["diameter"]
             );
         }
+        MainSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -94,7 +99,10 @@ public class CursorObject : MonoBehaviour
     // 実際のカーソルを赤くする
     public void showRealCursor()
     {
-        this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        // this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        Debug.Log(MainSpriteRenderer.sprite);
+        MainSpriteRenderer.sprite = AnswerCursor;
+        Debug.Log(MainSpriteRenderer.sprite);
     }
 
     // 動きを止める
