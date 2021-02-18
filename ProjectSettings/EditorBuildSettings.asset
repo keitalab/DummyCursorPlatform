@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CursorAnimation.unity
     guid: 5f3f552ce6e88403685970c0ad7a7b5c
+  - enabled: 1
+    path: Assets/Scenes/GazeCheck.unity
+    guid: 44e7dc22c06b8b44ab2eef36ca0e7ad4
   m_configObjects: {}

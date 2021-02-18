@@ -12,7 +12,7 @@ public class Settings : MonoBehaviour
     // windowサイズ
     public static float ScreenWidth, ScreenHeight;// 必要か要吟味
 
-    public static List<float> cursorDiameters = new List<float>() { 10 };
+    public static List<float> cursorDiameters = new List<float>() { 50 };
     public static List<float> windowSizes = new List<float>(){ 1080 };
     public static List<float> cursornums = new List<float>(){ 10 }; // これ全部で1セッション
     public static List<float> cursorSpeeds = new List<float>(){ 1.0f };
