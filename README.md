@@ -18,9 +18,11 @@ https://drive.google.com/drive/folders/125hbFElN-_z4pgmU-HS1YhNYtptDo6J7
     2. 入力画面にそれぞれ値を入力し、「OK」をクリックする。
     **仮説平均との差異**：2つのデータの意味は同じという0を入力。  
     **α**：有意水準(0.05で5%の検定)  
+    
 - #### t検定(対応のない場合)  
     1. 「データ」から「データ分析」を開き、「t検定：等分散を仮定した2標本による検定」を選択し「OK」をクリックする。
     2. 入力画面にそれぞれ値を入力し、「OK」をクリックする。  
+
 - #### 関数を使ったt検定  
     =T.TEST(1つ目のデータ範囲、2つ目のデータ範囲、2、対応の有無)  
     0：対応がない場合  
@@ -40,4 +42,12 @@ https://drive.google.com/drive/folders/125hbFElN-_z4pgmU-HS1YhNYtptDo6J7
     4. ある二組のデータに関して以下を実行する。
     =ABS(1つ目のデータ平均 - 2つ目のデータ平均) / SQRT(分散平均 - データ数)
     
-### js^stars
+### js-stars  
+- #### ｔ検定
+    - 参加者間 https://note.com/nappa7878/n/n50e942c7b396  
+    - 参加者内 https://note.com/nappa7878/n/n0227db54beec
+
+- #### 分散分析・多重比較
+    - 1要因 https://note.com/nappa7878/n/n0e9230550f1c
+    - 2要因 https://note.com/nappa7878/n/n2c63869f028e
+    - 3要因 https://note.com/nappa7878/n/ne9f7f2766655
