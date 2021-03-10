@@ -2,6 +2,9 @@
 実験者フレンドリーなダミーカーソル実験のプラットフォーム
 プログラムを変更せずにダミーカーソル実験を設計することができます。
 
+## ホームページ
+https://dummy-cursor-platform.studio.site/
+
 ## アプリケーションのダウンロードはこちら
 https://drive.google.com/drive/folders/125hbFElN-_z4pgmU-HS1YhNYtptDo6J7
 
